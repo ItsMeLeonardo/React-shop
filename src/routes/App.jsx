@@ -7,7 +7,7 @@ import Home from "../pages/Home";
 import NotFound from "../pages/NotFound";
 
 import "../styLes/gLobaL.scss";
-//rfc
+// TODO: merge the mobile menu with header class => 11 & 8
 const App = () => {
   return (
     <BrowserRouter>

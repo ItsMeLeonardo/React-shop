@@ -35,25 +35,16 @@
   font-weight: bold;
   margin-bottom: 4px;
 }
-.input {
-  background-color: $text-input-field;
-  border: none;
-  border-radius: 8px;
-  height: 30px;
+.value {
+  color: $very-light-pink;
   font-size: $md;
-  padding: 6px;
-  margin-bottom: 12px;
+  margin: 8px 0 32px 0;
 }
-.input-name,
-.input-email,
-.input-password {
-  margin-bottom: 22px;
-}
-.primary-button {
-  background-color: $hospital-green;
+.secondary-button {
+  background-color: $white;
   border-radius: 8px;
-  border: none;
-  color: $white;
+  border: 1px solid $hospital-green;
+  color: $hospital-green;
   width: 100%;
   cursor: pointer;
   font-size: $md;

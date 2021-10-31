@@ -1,51 +1,42 @@
 import React from "react";
-import "../styles/Login.scss";
+import "../styles/LoginRegister.scss";
 
 const Login = () => {
   return (
-    <div className="login">
-      <div className="form-container">
-        <h1 className="title">My account</h1>
+    <div class="login">
+      <div class="form-container">
+        <img src="./logos/logo_yard_sale.svg" alt="logo" class="logo" />
 
-        <form action="/" className="form">
-          <div>
-            <label htmlFor="name" className="label">
-              Name
-            </label>
-            <input
-              type="text"
-              id="name"
-              placeholder="Teff"
-              className="input input-name"
-            />
+        <form action="/" class="form">
+          <label for="email" class="label">
+            Email address
+          </label>
+          <input
+            type="text"
+            id="email"
+            placeholder="platzi@example.cm"
+            class="input input-email"
+          />
 
-            <label htmlFor="email" className="label">
-              Email
-            </label>
-            <input
-              type="text"
-              id="email"
-              placeholder="platzi@example.com"
-              className="input input-email"
-            />
-
-            <label htmlFor="password" className="label">
-              Password
-            </label>
-            <input
-              type="password"
-              id="password"
-              placeholder="*********"
-              className="input input-password"
-            />
-          </div>
+          <label for="password" class="label">
+            Password
+          </label>
+          <input
+            type="password"
+            id="password"
+            placeholder="*********"
+            class="input input-password"
+          />
 
           <input
             type="submit"
-            value="Create"
-            className="primary-button login-button"
+            value="Log in"
+            class="primary-button login-button"
           />
+          <a href="/">Forgot my password</a>
         </form>
+
+        <button class="secondary-button signup-button">Sign up</button>
       </div>
     </div>
   );

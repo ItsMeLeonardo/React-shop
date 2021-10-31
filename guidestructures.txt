@@ -1,0 +1,27 @@
+📂 components
+    #header
+    #Menu
+    #Order
+    #OrderItem
+    #ProductInfo
+    #ShoppingCartItem
+📂 containers
+    #Layout
+    #MyOrder
+    #ProductDetail
+    #ProductList
+📂 pages
+    #Home
+    #Checkout
+    #CreateAccount
+    #Login
+    #MyAccount
+    #NewPassword
+    #NotFound
+    #Orders
+    #RecoveryPassword
+    #SendEmail
+📂 routes
+    #app
+📂 styles //Rename the className from main-container to [checkout, login, myAccount, ...]
+    #

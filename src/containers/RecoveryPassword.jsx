@@ -1,6 +1,8 @@
 import React from "react";
 import "../styles/RecoveryPassword.scss";
 
+// class 1 => change password & class 2 => confirm the changed password
+
 function RecoveryPassword(props) {
   return (
     <div className="login">
