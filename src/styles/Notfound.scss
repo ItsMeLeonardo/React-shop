@@ -1,0 +1,38 @@
+@import "vars";
+@import url(https://fonts.googleapis.com/css?family=Roboto:400,100,300,500);
+
+.page-content {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+.button-404 {
+  font-weight: 300;
+  background-color: $hospital-green;
+  color: $white;
+  font-size: 1.2em;
+  text-decoration: none;
+  border: 1px solid #efefef;
+  padding: 0.5em;
+  border-radius: 3px;
+  float: left;
+  margin: 0 0 0 -168px;
+  left: 50%;
+  position: relative;
+  transition: all 0.3s linear;
+}
+
+.text-404 {
+  font-size: 2em;
+  text-align: center;
+  font-weight: 100;
+}
+
+.title-404 {
+  margin-top: 0.2em;
+  margin-bottom: 0.2em;
+  text-align: center;
+  font-size: 10em;
+  font-weight: 100;
+}
