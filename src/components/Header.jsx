@@ -1,11 +1,19 @@
-import React from "react";
-import "@styles/Header.scss";
+import React, { useState } from "react";
 
+import Menu from "@components/Menu";
+
+import "@styles/Header.scss";
 import menu from "@icons/icon_menu.svg";
 import logo from "@logos/logo_yard_sale.svg";
 import iconShoppingCart from "@icons/icon_shopping_cart.svg";
 
 const Header = () => {
+  const [toggleMenu, setToggleMenu] = useState(false);
+
+  const handleToggleMenu = () => {
+    setToggleMenu(!toggleMenu);
+  };
+
   return (
     <nav>
       <img src={menu} alt="menu" className="menu" />
@@ -34,13 +42,16 @@ const Header = () => {
       </div>
       <div className="navbar-right">
         <ul>
-          <li className="navbar-email">platzi@example.com</li>
+          <li className="navbar-email" onClick={handleToggleMenu}>
+            platzi@example.com
+          </li>
           <li className="navbar-shopping-cart">
             <img src={iconShoppingCart} alt="shopping cart" />
             <div>2</div>
           </li>
         </ul>
       </div>
+      {toggleMenu && <Menu />}
     </nav>
   );
 };

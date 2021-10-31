@@ -1,4 +1,7 @@
 body {
-	margin: 0;
-	font-family: 'Quicksand', sans-serif;
+  margin: 0;
+  font-family: "Quicksand", sans-serif;
+}
+.btn {
+  cursor: pointer;
 }
