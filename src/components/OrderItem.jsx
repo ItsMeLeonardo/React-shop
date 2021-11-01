@@ -1,9 +1,13 @@
-import React from "react";
+import React, { useContext } from "react";
+import { AppContext } from "@context/AppContext";
+
 import closeIcon from "@icons/icon_close.png";
 import "@styles/OrderItem.scss";
 
-const OrderItem = ({ product, removeFromCard }) => {
+const OrderItem = ({ product }) => {
   const { title, id, price, images } = product;
+
+  const { removeFromCard } = useContext(AppContext);
 
   return (
     <div className="OrderItem">
