@@ -1,17 +1,24 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 
 import Menu from "@components/Menu";
+import MyOrder from "@containers/MyOrder";
 
 import "@styles/Header.scss";
 import menu from "@icons/icon_menu.svg";
 import logo from "@logos/logo_yard_sale.svg";
 import iconShoppingCart from "@icons/icon_shopping_cart.svg";
+import { AppContext } from "@context/AppContext";
 
 const Header = () => {
+  const { state } = useContext(AppContext);
   const [toggleMenu, setToggleMenu] = useState(false);
+  const [toggleOrders, setToggleOrders] = useState("");
 
   const handleToggleMenu = () => {
     setToggleMenu(!toggleMenu);
+  };
+  const handleToggleOrder = () => {
+    setToggleOrders(!toggleOrders);
   };
 
   return (
@@ -45,13 +52,14 @@ const Header = () => {
           <li className="navbar-email" onClick={handleToggleMenu}>
             platzi@example.com
           </li>
-          <li className="navbar-shopping-cart">
+          <li className="btn navbar-shopping-cart" onClick={handleToggleOrder}>
             <img src={iconShoppingCart} alt="shopping cart" />
-            <div>2</div>
+            {!!state.card.length && <div>{state.card.length}</div>}
           </li>
         </ul>
       </div>
       {toggleMenu && <Menu />}
+      {toggleOrders && <MyOrder />}
     </nav>
   );
 };

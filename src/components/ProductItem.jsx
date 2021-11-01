@@ -6,14 +6,16 @@ import { AppContext } from "../context/AppContext";
 
 const ProductItem = (props) => {
   const { title, images, price } = props;
-  const [cart, setCart] = useState(true);
+  const [inCart, setInCart] = useState(false);
 
-  const { state: productCart, addToCard } = useContext(AppContext);
+  const { addToCard, removeFromCard } = useContext(AppContext);
 
   const handleToggleCart = (product) => {
     addToCard(product);
-    setCart(!cart);
-    console.log(productCart);
+    setInCart(!inCart);
+    if (inCart) {
+      removeFromCard(product.id);
+    }
   };
 
   return (
@@ -28,7 +30,7 @@ const ProductItem = (props) => {
           onClick={() => handleToggleCart(props)}
           className="btn btn-icon"
         >
-          <img src={cart ? iconAddToCard : iconClose} alt="" />
+          <img src={inCart ? iconClose : iconAddToCard} alt="" />
         </figure>
       </div>
     </div>
