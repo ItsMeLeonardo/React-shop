@@ -3,6 +3,7 @@ import OrderItem from "@components/OrderItem";
 import Menu from "@components/Menu";
 import "@styles/Checkout.scss";
 
+// TODO: complete checkout page
 const Checkout = () => {
   return (
     <div className="Checkout">
@@ -17,7 +18,7 @@ const Checkout = () => {
             <p>$560.00</p>
           </div>
         </div>
-        <OrderItem />
+        {/* <OrderItem /> */}
       </div>
     </div>
   );

@@ -9,7 +9,7 @@ const NewPassword = () => {
         <h1 className="title">Create a new password</h1>
         <p className="subtitle">Enter a new passwrd for yue account</p>
         <form action="/" className="form">
-          <label for="password" className="label">
+          <label forHtml="password" className="label">
             Password
           </label>
           <input
@@ -18,7 +18,7 @@ const NewPassword = () => {
             placeholder="*********"
             className="input input-password"
           />
-          <label for="new-password" className="label">
+          <label forHtml="new-password" className="label">
             Password
           </label>
           <input
