@@ -8,7 +8,6 @@ const addQuantityToProduct = (product) => {
   return {
     ...product,
     quantity: product.quantity || 1,
-    // subTotalPrice: product.price * product.quantity,
   };
 };
 

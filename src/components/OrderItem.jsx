@@ -70,7 +70,4 @@ const OrderItem = ({ product }) => {
   );
 };
 
-// export default React.memo(OrderItem, (prevProps, nextProps) => {
-//   return prevProps.product.id === nextProps.product.id;
-// });
 export default OrderItem;
