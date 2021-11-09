@@ -10,7 +10,7 @@ import iconShoppingCart from "@icons/icon_shopping_cart.svg";
 import { AppContext } from "@context/AppContext";
 
 const Header = () => {
-  const { state } = useContext(AppContext);
+  const { state, totalItems } = useContext(AppContext);
   const [toggleMenu, setToggleMenu] = useState(false);
   const [toggleOrders, setToggleOrders] = useState("");
 
@@ -54,14 +54,14 @@ const Header = () => {
           </li>
           <li className="btn navbar-shopping-cart" onClick={handleToggleOrder}>
             <img src={iconShoppingCart} alt="shopping cart" />
-            {!!state.card.length && <div>{state.card.length}</div>}
+            {!!state.card.length && <div>{totalItems}</div>}
           </li>
         </ul>
       </div>
       {toggleMenu && <Menu />}
-      {toggleOrders && <MyOrder />}
+      {toggleOrders && <MyOrder hideMyOrder={handleToggleOrder} />}
     </nav>
   );
 };
 
-export default Header;
+export default React.memo(Header);

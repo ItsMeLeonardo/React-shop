@@ -1,7 +1,7 @@
 @import "vars";
 
 .MyOrder {
-  width: 360px;
+  width: 400px;
   padding: 24px;
   box-sizing: border-box;
   position: absolute;
@@ -9,16 +9,25 @@
   background: #fff;
   top: 60px;
   bottom: 0;
-  border-radius: 6px;
+  border-radius: 0 0 1rem 1rem;
+  box-shadow: -0.25rem 0.5rem 1.5rem rgba(145, 145, 145, 0.1);
+  overflow-y: scroll;
 }
-.title-container {
+.title-container-my-order {
   display: flex;
+  padding: 0.5rem 0;
+  gap: 1rem;
+  cursor: pointer;
 }
-.title-container img {
+.title-container-my-order img {
   transform: rotate(180deg);
-  margin-right: 14px;
+  margin-right: 0;
+  transition: transform 0.3s ease;
 }
-.title {
+.title-container-my-order:hover img {
+  transform: translateX(-0.25rem) rotate(180deg);
+}
+.title-myOrder {
   font-size: var(--lg);
   font-weight: bold;
 }
@@ -55,7 +64,12 @@
   font-size: var(--md);
   font-weight: bold;
   height: 50px;
+  transition: box-shadow 0.3s ease;
 }
+.primary-button:hover {
+  box-shadow: 0 0.5rem 1.25rem -0.5rem var(--hospital-green);
+}
+
 @media (max-width: 640px) {
   .MyOrder {
     width: 100%;

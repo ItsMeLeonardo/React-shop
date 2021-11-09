@@ -4,33 +4,71 @@ const INITIAL_STATE = {
   card: [],
 };
 
+const addQuantityToProduct = (product) => {
+  return {
+    ...product,
+    quantity: product.quantity || 1,
+    // subTotalPrice: product.price * product.quantity,
+  };
+};
+
 export function useInitialState() {
   const [state, setState] = useState(INITIAL_STATE);
-  const [total, setTotal] = useState(0);
+  const [totalPrice, setTotalPrice] = useState(0);
+  const [totalItems, setTotalItems] = useState(0);
 
   const addToCard = (product) => {
-    setState({
-      ...state,
-      card: [...state.card, product],
-    });
+    const newProduct = addQuantityToProduct(product);
+    const productExists = state.card.find((p) => p.id === product.id);
+    if (productExists) {
+      productExists.quantity += 1;
+      setState({ ...state });
+    } else {
+      setState({
+        ...state,
+        card: [...state.card, newProduct],
+      });
+    }
   };
 
   const removeFromCard = (id) => {
-    setState({
-      ...state,
-      card: state.card.filter((product) => product.id !== id),
-    });
+    const newCard = state.card.filter((product) => product.id !== id);
+    setState({ ...state, card: newCard });
   };
 
-  const calculateTotal = () => {
+  const removeOneFromCard = (id) => {
+    const updatedCard = state.card.find((product) => product.id === id);
+    if (updatedCard.quantity > 1) {
+      updatedCard.quantity -= 1;
+      setState({ ...state });
+    } else {
+      removeFromCard(id);
+    }
+  };
+
+  const calculateTotalPrice = () => {
     return state.card.reduce((accumulator, product) => {
-      return accumulator + product.price;
+      return accumulator + product.price * product.quantity;
+    }, 0);
+  };
+
+  const calculateTotalItems = () => {
+    return state.card.reduce((accumulator, product) => {
+      return accumulator + product.quantity;
     }, 0);
   };
 
   useEffect(() => {
-    setTotal(calculateTotal());
+    setTotalPrice(Number(calculateTotalPrice().toFixed(2)));
+    setTotalItems(calculateTotalItems());
   }, [state]);
 
-  return { state, addToCard, removeFromCard, total };
+  return {
+    state,
+    addToCard,
+    removeFromCard,
+    totalPrice,
+    totalItems,
+    removeOneFromCard,
+  };
 }

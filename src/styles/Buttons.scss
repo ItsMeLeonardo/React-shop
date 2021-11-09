@@ -1,0 +1,17 @@
+.sm-square {
+  --size: 1.5rem;
+  width: var(--size);
+  height: var(--size);
+  border: none;
+  padding: 0.25rem;
+  background: #4ad9006e;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 0.25rem;
+  top: 0;
+  left: -1rem;
+  font-weight: 900;
+  backdrop-filter: blur(10px);
+  color: white;
+}

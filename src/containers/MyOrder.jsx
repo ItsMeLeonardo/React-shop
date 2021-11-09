@@ -5,14 +5,18 @@ import OrderItem from "@components/OrderItem";
 import arrowIcon from "@icons/flechita.svg";
 import "@styles/MyOrder.scss";
 
-const MyOrder = () => {
-  const { state, total } = useContext(AppContext);
+const MyOrder = ({ hideMyOrder }) => {
+  const { state, totalPrice } = useContext(AppContext);
 
   return (
     <aside className="MyOrder">
-      <div className="title-container">
+      <div
+        className="title-container-my-order"
+        type="button"
+        onClick={hideMyOrder}
+      >
         <img src={arrowIcon} alt="arrow" />
-        <p className="title">My order</p>
+        <p className="title-myOrder">My order</p>
       </div>
       <div className="my-order-content">
         {state.card.map((product) => (
@@ -22,7 +26,7 @@ const MyOrder = () => {
           <p>
             <span>Total</span>
           </p>
-          <p>${total}</p>
+          <p>${totalPrice}</p>
         </div>
         <button className="primary-button">Checkout</button>
       </div>

@@ -12,7 +12,7 @@
     "react",
     "javascript"
   ],
-  "author": "Oscar Barajas <oscar@platzi.com>",
+  "author": "Carlos Leonardo <It'sMeLeonardo>",
   "license": "MIT",
   "dependencies": {
     "@babel/core": "^7.15.0",
