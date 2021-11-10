@@ -2,12 +2,12 @@ import React, { useContext, useState } from "react";
 
 import Menu from "@components/Menu";
 import MyOrder from "@containers/MyOrder";
+import { AppContext } from "@context/AppContext";
 
 import "@styles/Header.scss";
 import menu from "@icons/icon_menu.svg";
 import logo from "@logos/logo_yard_sale.svg";
 import iconShoppingCart from "@icons/icon_shopping_cart.svg";
-import { AppContext } from "@context/AppContext";
 
 const Header = () => {
   const { state, totalItems } = useContext(AppContext);
@@ -28,22 +28,34 @@ const Header = () => {
         <img src={logo} alt="logo" className="logo-nav" />
         <ul>
           <li>
-            <a href="/">All</a>
+            <a className="active" href="/">
+              All
+            </a>
           </li>
           <li>
-            <a href="/">Clothes</a>
+            <a className="" href="/">
+              Clothes
+            </a>
           </li>
           <li>
-            <a href="/">Electronics</a>
+            <a className="" href="/">
+              Electronics
+            </a>
           </li>
           <li>
-            <a href="/">Furnitures</a>
+            <a className="" href="/">
+              Furniture
+            </a>
           </li>
           <li>
-            <a href="/">Toys</a>
+            <a className="" href="/">
+              Toys
+            </a>
           </li>
           <li>
-            <a href="/">Others</a>
+            <a className="" href="/">
+              Others
+            </a>
           </li>
         </ul>
       </div>
@@ -54,7 +66,7 @@ const Header = () => {
           </li>
           <li className="btn navbar-shopping-cart" onClick={handleToggleOrder}>
             <img src={iconShoppingCart} alt="shopping cart" />
-            {!!state.card.length && <div>{totalItems}</div>}
+            {!!state.cart.length && <div>{totalItems}</div>}
           </li>
         </ul>
       </div>

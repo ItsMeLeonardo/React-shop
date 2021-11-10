@@ -15,7 +15,7 @@ const hiddenTitle = (title) => {
 const OrderItem = ({ product }) => {
   const { title, id, price, image, quantity } = product;
 
-  const { removeFromCard, addToCard, removeOneFromCard } =
+  const { removeFromCart, addToCart, removeOneFromCart } =
     useContext(AppContext);
 
   return (
@@ -24,7 +24,7 @@ const OrderItem = ({ product }) => {
         <img src={image} alt={title} />
       </figure>
       <div className="OrderItem-content-quantity">
-        <Button type="small" onClick={() => addToCard(product)}>
+        <Button type="small" onClick={() => addToCart(product)}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             className="h-6 w-6"
@@ -41,7 +41,7 @@ const OrderItem = ({ product }) => {
           </svg>
         </Button>
         <span className="OrderItem-quantity">{quantity}</span>
-        <Button type="small" onClick={() => removeOneFromCard(id)}>
+        <Button type="small" onClick={() => removeOneFromCart(id)}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             className="h-6 w-6"
@@ -63,7 +63,7 @@ const OrderItem = ({ product }) => {
       <img
         src={closeIcon}
         alt="close"
-        onClick={() => removeFromCard(id)}
+        onClick={() => removeFromCart(id)}
         className="btn"
       />
     </div>

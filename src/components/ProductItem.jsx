@@ -1,15 +1,22 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import "@styles/ProductItem.scss";
-import iconAddToCard from "@icons/bt_add_to_cart.svg";
+import iconAddToCart from "@icons/bt_add_to_cart.svg";
+import iconAddedToCart from "@icons/bt_added_to_cart.svg";
 import { AppContext } from "../context/AppContext";
 
 const ProductItem = (props) => {
-  const { title, image, price } = props;
+  const [productInCart, setProductInCart] = useState(false);
+  const { title, image, price, id } = props;
 
-  const { addToCard } = useContext(AppContext);
+  const { addToCart, removeFromCart } = useContext(AppContext);
 
   const handleToggleCart = (product) => {
-    addToCard(product);
+    setProductInCart(!productInCart);
+    if (productInCart) {
+      setProductInCart(!removeFromCart(id));
+    } else {
+      setProductInCart(addToCart(product));
+    }
   };
 
   return (
@@ -23,8 +30,12 @@ const ProductItem = (props) => {
         <figure
           onClick={() => handleToggleCart(props)}
           className="btn btn-icon"
+          role="button"
         >
-          <img src={iconAddToCard} alt="" />
+          <img
+            src={productInCart ? iconAddedToCart : iconAddToCart}
+            alt="icon cart"
+          />
         </figure>
       </div>
     </div>

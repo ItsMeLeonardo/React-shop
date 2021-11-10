@@ -46,7 +46,7 @@
   color: var(--very-light-pink);
 }
 @media (max-width: 640px) {
-  .cards-container {
+  .carts-container {
     grid-template-columns: repeat(auto-fill, 140px);
   }
   .ProductItem {

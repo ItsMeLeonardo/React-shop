@@ -19,7 +19,7 @@ const MyOrder = ({ hideMyOrder }) => {
         <p className="title-myOrder">My order</p>
       </div>
       <div className="my-order-content">
-        {state.card.map((product) => (
+        {state.cart.map((product) => (
           <OrderItem key={`orderItem-${product?.id}`} product={product} />
         ))}
         <div className="order">

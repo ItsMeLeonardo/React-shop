@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 
 const INITIAL_STATE = {
-  card: [],
+  cart: [],
 };
 
 const addQuantityToProduct = (product) => {
@@ -16,46 +16,64 @@ export function useInitialState() {
   const [totalPrice, setTotalPrice] = useState(0);
   const [totalItems, setTotalItems] = useState(0);
 
-  const addToCard = (product) => {
-    const newProduct = addQuantityToProduct(product);
-    const productExists = state.card.find((p) => p.id === product.id);
-    if (productExists) {
-      productExists.quantity += 1;
-      setState({ ...state });
-    } else {
-      setState({
-        ...state,
-        card: [...state.card, newProduct],
-      });
+  const addToCart = (product) => {
+    try {
+      const newProduct = addQuantityToProduct(product);
+      const productExists = state.cart.find((p) => p.id === product.id);
+      if (productExists) {
+        productExists.quantity += 1;
+        setState({ ...state });
+      } else {
+        setState({
+          ...state,
+          cart: [...state.cart, newProduct],
+        });
+      }
+      return true;
+    } catch (error) {
+      console.log(
+        `An error ocurred while added a product in the card \n Error => ${error}`
+      );
+      return false;
     }
   };
 
-  const removeFromCard = (id) => {
-    const newCard = state.card.filter((product) => product.id !== id);
-    setState({ ...state, card: newCard });
+  const removeFromCart = (id) => {
+    try {
+      const newCart = state.cart.filter((product) => product.id !== id);
+      setState({ ...state, cart: newCart });
+      return true;
+    } catch (error) {
+      console.log(
+        `An error ocurred while removed a product from the card \n Error => ${error}`
+      );
+      return false;
+    }
   };
 
-  const removeOneFromCard = (id) => {
-    const updatedCard = state.card.find((product) => product.id === id);
-    if (updatedCard.quantity > 1) {
-      updatedCard.quantity -= 1;
+  const removeOneFromCart = (id) => {
+    const updatedCart = state.cart.find((product) => product.id === id);
+    if (updatedCart.quantity > 1) {
+      updatedCart.quantity -= 1;
       setState({ ...state });
     } else {
-      removeFromCard(id);
+      removeFromCart(id);
     }
   };
 
   const calculateTotalPrice = () => {
-    return state.card.reduce((accumulator, product) => {
+    return state.cart.reduce((accumulator, product) => {
       return accumulator + product.price * product.quantity;
     }, 0);
   };
 
   const calculateTotalItems = () => {
-    return state.card.reduce((accumulator, product) => {
+    return state.cart.reduce((accumulator, product) => {
       return accumulator + product.quantity;
     }, 0);
   };
+
+  const productIsCart = (id) => {};
 
   useEffect(() => {
     setTotalPrice(Number(calculateTotalPrice().toFixed(2)));
@@ -64,10 +82,10 @@ export function useInitialState() {
 
   return {
     state,
-    addToCard,
-    removeFromCard,
+    addToCart,
+    removeFromCart,
     totalPrice,
     totalItems,
-    removeOneFromCard,
+    removeOneFromCart,
   };
 }

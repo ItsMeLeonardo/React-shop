@@ -1,6 +1,7 @@
 import React from "react";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 import Layout from "@containers/Layout";
+import ProductDetail from "@containers/ProductDetail";
 import Home from "@pages/Home";
 import Login from "@pages/Login";
 import PasswordRecovery from "@pages/PasswordRecovery";
