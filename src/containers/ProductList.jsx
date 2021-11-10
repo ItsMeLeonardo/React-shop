@@ -3,10 +3,8 @@ import ProductItem from "@components/ProductItem";
 import useGetProducts from "@hooks/useGetProducts";
 import "@styles/ProductList.scss";
 
-const API_URL = "https://fakestoreapi.com/products";
-
 const ProductList = () => {
-  const { products } = useGetProducts(API_URL);
+  const { products } = useGetProducts();
 
   return (
     <section className="main-container">

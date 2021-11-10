@@ -1,6 +1,9 @@
 * {
   outline: none;
 }
+[role="button"] {
+  cursor: pointer;
+}
 body {
   margin: 0;
   font-family: "Quicksand", sans-serif;

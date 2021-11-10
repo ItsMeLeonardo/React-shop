@@ -1,10 +1,12 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 
-export default function useGetProducts(url) {
+const API_URL = "https://fakestoreapi.com/products";
+
+export default function useGetProducts() {
   const [products, setProducts] = useState([]);
 
   useEffect(() => {
-    fetch(url)
+    fetch(API_URL)
       .then((res) => res.json())
       .then(setProducts);
   }, []);

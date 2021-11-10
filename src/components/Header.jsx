@@ -1,18 +1,22 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useRef, useState } from "react";
 
 import Menu from "@components/Menu";
+import CategoryItem from "@components/CategoryItem";
 import MyOrder from "@containers/MyOrder";
 import { AppContext } from "@context/AppContext";
+import useGetCategories from "@hooks/useGetCategories";
 
-import "@styles/Header.scss";
 import menu from "@icons/icon_menu.svg";
 import logo from "@logos/logo_yard_sale.svg";
 import iconShoppingCart from "@icons/icon_shopping_cart.svg";
+import "@styles/Header.scss";
 
 const Header = () => {
   const { state, totalItems } = useContext(AppContext);
   const [toggleMenu, setToggleMenu] = useState(false);
   const [toggleOrders, setToggleOrders] = useState("");
+  const { categories } = useGetCategories();
+  const refCategoryContainer = useRef(null);
 
   const handleToggleMenu = () => {
     setToggleMenu(!toggleMenu);
@@ -26,37 +30,14 @@ const Header = () => {
       <img src={menu} alt="menu" className="menu" />
       <div className="navbar-left">
         <img src={logo} alt="logo" className="logo-nav" />
-        <ul>
-          <li>
-            <a className="active" href="/">
-              All
-            </a>
-          </li>
-          <li>
-            <a className="" href="/">
-              Clothes
-            </a>
-          </li>
-          <li>
-            <a className="" href="/">
-              Electronics
-            </a>
-          </li>
-          <li>
-            <a className="" href="/">
-              Furniture
-            </a>
-          </li>
-          <li>
-            <a className="" href="/">
-              Toys
-            </a>
-          </li>
-          <li>
-            <a className="" href="/">
-              Others
-            </a>
-          </li>
+        <ul ref={refCategoryContainer}>
+          {categories?.map((category) => (
+            <CategoryItem
+              key={category.name}
+              category={category}
+              parentRef={refCategoryContainer}
+            />
+          ))}
         </ul>
       </div>
       <div className="navbar-right">

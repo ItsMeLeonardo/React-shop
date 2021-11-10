@@ -1,0 +1,18 @@
+@import "vars";
+.category-item {
+  border: 1px solid transparent;
+  text-decoration: none;
+  color: var(--very-light-pink);
+  border: 1px solid var(--white);
+  padding: 8px;
+  border-radius: 8px;
+  transition: border 0.3s ease, color 0.3s ease;
+}
+.category-item:hover {
+  border: 1px solid var(--hospital-green);
+  color: var(--hospital-green);
+}
+.active .category-item {
+  background: var(--hospital-green);
+  color: #fff;
+}
