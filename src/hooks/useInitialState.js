@@ -1,5 +1,10 @@
 import { useState, useEffect } from "react";
 
+/**
+ *
+ * @param {Object} product an object with the without the quantity property
+ * @returns
+ */
 const INITIAL_STATE = {
   cart: [],
 };
