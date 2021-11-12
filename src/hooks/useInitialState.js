@@ -6,6 +6,7 @@ import { useState, useEffect } from "react";
  * @returns
  */
 const INITIAL_STATE = {
+  // products: [],
   cart: [],
 };
 

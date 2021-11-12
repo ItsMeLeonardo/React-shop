@@ -1,4 +1,5 @@
 import React, { useContext, useState } from "react";
+
 import "@styles/ProductItem.scss";
 import iconAddToCart from "@icons/bt_add_to_cart.svg";
 import iconAddedToCart from "@icons/bt_added_to_cart.svg";
@@ -6,7 +7,7 @@ import { AppContext } from "../context/AppContext";
 
 const ProductItem = (props) => {
   const [productInCart, setProductInCart] = useState(false);
-  const { title, image, price, id } = props;
+  const { title, image, price, id, openDetail } = props;
 
   const { addToCart, removeFromCart } = useContext(AppContext);
 
@@ -20,8 +21,8 @@ const ProductItem = (props) => {
   };
 
   return (
-    <div className="ProductItem">
-      <img src={image} alt={title} />
+    <div role="button" onClick={openDetail} className="ProductItem">
+      <img className="ProductItem-img" src={image} alt={title} />
       <div className="product-info">
         <div>
           <p>${price}</p>

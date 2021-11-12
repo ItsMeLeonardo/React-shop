@@ -1,17 +1,26 @@
 import React from "react";
+import ReactDOM from "react-dom";
 import ProductInfo from "@components/ProductInfo";
 import iconClose from "@icons/icon_close.png";
+import { useDetailProduct } from "@hooks/useDetailProduct";
 import "@styles/ProductDetail.scss";
 
-const ProductDetail = () => {
+const ProductDetail = ({ id, onClose }) => {
+  const { productDetail } = useDetailProduct(id);
+
   return (
-    <aside className="ProductDetail">
-      <div className="ProductDetail-close">
+    <aside className="ProductDetail glass-light">
+      <div role="button" onClick={onClose} className="ProductDetail-close">
         <img src={iconClose} alt="close" />
       </div>
-      <ProductInfo />
+      <ProductInfo product={productDetail} />
     </aside>
   );
 };
 
-export default ProductDetail;
+export default function PortalProductDetail({ id, onClose }) {
+  return ReactDOM.createPortal(
+    <ProductDetail id={id} onClose={onClose} />,
+    document.getElementById("root-detail")
+  );
+}
