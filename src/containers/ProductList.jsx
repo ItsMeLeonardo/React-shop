@@ -6,9 +6,11 @@ import PortalProductDetail from "./ProductDetail";
 
 const ProductList = () => {
   const { products, loading } = useProducts();
-  const [detailOpen, setDetailOpen] = useState(true);
+  const [detailOpen, setDetailOpen] = useState(false);
+  const [idProductDetail, setIdProductDetail] = useState(1);
 
-  const handleDetailOpen = () => {
+  const handleDetailOpen = (id) => {
+    setIdProductDetail(id);
     setDetailOpen(true);
   };
   const handleDetailClose = () => {
@@ -30,7 +32,9 @@ const ProductList = () => {
           />
         ))}
       </div>
-      {detailOpen && <PortalProductDetail id={1} onClose={handleDetailClose} />}
+      {detailOpen && (
+        <PortalProductDetail id={idProductDetail} onClose={handleDetailClose} />
+      )}
     </section>
   );
 };

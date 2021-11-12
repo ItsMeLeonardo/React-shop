@@ -21,8 +21,14 @@ const ProductItem = (props) => {
   };
 
   return (
-    <div role="button" onClick={openDetail} className="ProductItem">
-      <img className="ProductItem-img" src={image} alt={title} />
+    <div className="ProductItem">
+      <img
+        role="button"
+        onClick={() => openDetail(id)}
+        className="ProductItem-img"
+        src={image}
+        alt={title}
+      />
       <div className="product-info">
         <div>
           <p>${price}</p>
