@@ -5,9 +5,9 @@ import iconAddToCart from "@icons/bt_add_to_cart.svg";
 import iconAddedToCart from "@icons/bt_added_to_cart.svg";
 import { ShoppingCartContext } from "../context/ShoppingCartContext";
 
-function ProductItem({ product }) {
+function ProductItem({ product, openDetail }) {
   const [productInCart, setProductInCart] = useState(false);
-  const { title, image, price, id, openDetail } = product;
+  const { title, image, price, id } = product;
 
   const { addToCart, removeFromCart } = useContext(ShoppingCartContext);
 
@@ -48,10 +48,7 @@ function ProductItem({ product }) {
     </div>
   );
 }
-
+/* function only when show detail, in at to cart not fount */
 export default React.memo(ProductItem, (prevProps, nextProps) => {
-  console.log("prev", prevProps.product.title);
-  console.log("next", nextProps.product.title);
-  console.log(prevProps.product.title === nextProps.product.title);
-  return prevProps.product.title === nextProps.product.title;
+  return prevProps.product.id === nextProps.product.id;
 });
