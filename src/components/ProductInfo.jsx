@@ -4,8 +4,6 @@ import iconAddToCart from "@icons/bt_add_to_cart.svg";
 import "@styles/ProductInfo.scss";
 
 const ProductInfo = ({ product }) => {
-  // const { description, price, image, title } = product;
-
   return (
     <>
       <img className="" src={product?.image} alt={product?.title} />

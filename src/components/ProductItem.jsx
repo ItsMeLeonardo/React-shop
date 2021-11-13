@@ -1,9 +1,9 @@
 import React, { useContext, useState } from "react";
 
-import "@styles/ProductItem.scss";
 import iconAddToCart from "@icons/bt_add_to_cart.svg";
 import iconAddedToCart from "@icons/bt_added_to_cart.svg";
-import { ShoppingCartContext } from "../context/ShoppingCartContext";
+import { ShoppingCartContext } from "@context/ShoppingCartContext";
+import "@styles/ProductItem.scss";
 
 function ProductItem({ product, openDetail }) {
   const [productInCart, setProductInCart] = useState(false);
@@ -12,7 +12,6 @@ function ProductItem({ product, openDetail }) {
   const { addToCart, removeFromCart } = useContext(ShoppingCartContext);
 
   const handleToggleCart = (product) => {
-    // setProductInCart(!productInCart);
     if (productInCart) {
       setProductInCart(!removeFromCart(id));
     } else {
@@ -40,6 +39,7 @@ function ProductItem({ product, openDetail }) {
           role="button"
         >
           <img
+            className="ProductItem-img"
             src={productInCart ? iconAddedToCart : iconAddToCart}
             alt="icon cart"
           />

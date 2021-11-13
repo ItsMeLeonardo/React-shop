@@ -10,27 +10,34 @@
   top: 4rem;
   right: 3.5rem;
 }
-.Menu ul {
+.Menu-list {
   list-style: none;
   padding: 0;
   margin: 0;
 }
-.Menu ul li {
+.BtnContent {
   text-align: end;
 }
-.Menu ul li:nth-child(1),
-.Menu ul li:nth-child(2) {
+.MenuBtn.textBtnPrimary {
   font-weight: bold;
+  transition: color 0.5s ease;
 }
-.Menu ul li:last-child {
+.MenuBtn.textBtnPrimary:hover {
+  color: var(--hospital-green);
+}
+.BtnContent:last-child {
   padding-top: 20px;
   border-top: 1px solid var(--very-light-pink);
 }
-.Menu ul li:last-child a {
+.MenuBtn.textBtnAlert {
   color: var(--hospital-green);
   font-size: var(--sm);
+  transition: color 0.5s ease;
 }
-.Menu ul li a {
+.MenuBtn.textBtnAlert:hover {
+  color: var(--alert);
+}
+.MenuBtn {
   color: var(--back);
   text-decoration: none;
   margin-bottom: 20px;

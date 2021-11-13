@@ -4,17 +4,21 @@ import "@styles/Menu.scss";
 const Menu = () => {
   return (
     <div className="Menu glass-light">
-      <ul>
-        <li>
-          <a href="/" className="title">
+      <ul className="Menu-list">
+        <li className="BtnContent">
+          <a href="/" className="MenuBtn textBtnPrimary ">
             My orders
           </a>
         </li>
-        <li>
-          <a href="/">My account</a>
+        <li className="BtnContent">
+          <a className="MenuBtn textBtnPrimary" href="/">
+            My account
+          </a>
         </li>
-        <li>
-          <a href="/">Sign out</a>
+        <li className="BtnContent">
+          <a className="MenuBtn textBtnAlert" href="/">
+            Sign out
+          </a>
         </li>
       </ul>
     </div>
