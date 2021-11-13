@@ -1,14 +1,15 @@
 import React from "react";
 import "@styles/Menu.scss";
+import { Link } from "react-router-dom";
 
 const Menu = () => {
   return (
     <div className="Menu glass-light">
       <ul className="Menu-list">
         <li className="BtnContent">
-          <a href="/" className="MenuBtn textBtnPrimary ">
+          <Link to="/orders" className="MenuBtn textBtnPrimary ">
             My orders
-          </a>
+          </Link>
         </li>
         <li className="BtnContent">
           <a className="MenuBtn textBtnPrimary" href="/">
