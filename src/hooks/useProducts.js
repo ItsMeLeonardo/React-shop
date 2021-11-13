@@ -7,11 +7,13 @@ export default function useGetProducts() {
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    setLoading(true);
-    getProducts().then((products) => {
-      setProducts(products);
-      setLoading(false);
-    });
+    if (products.length === 0) {
+      setLoading(true);
+      getProducts().then((products) => {
+        setProducts(products);
+        setLoading(false);
+      });
+    }
   }, []);
 
   return { products, loading };

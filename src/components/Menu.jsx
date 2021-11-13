@@ -12,14 +12,14 @@ const Menu = () => {
           </Link>
         </li>
         <li className="BtnContent">
-          <a className="MenuBtn textBtnPrimary" href="/">
+          <Link to="/account" className="MenuBtn textBtnPrimary">
             My account
-          </a>
+          </Link>
         </li>
         <li className="BtnContent">
-          <a className="MenuBtn textBtnAlert" href="/">
+          <Link to="/login" className="MenuBtn textBtnAlert">
             Sign out
-          </a>
+          </Link>
         </li>
       </ul>
     </div>

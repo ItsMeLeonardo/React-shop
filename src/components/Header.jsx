@@ -10,6 +10,7 @@ import menu from "@icons/icon_menu.svg";
 import logo from "@logos/logo_yard_sale.svg";
 import iconShoppingCart from "@icons/icon_shopping_cart.svg";
 import "@styles/Header.scss";
+import { Link } from "react-router-dom";
 
 const Header = () => {
   const { shopCart, totalItems } = useContext(ShoppingCartContext);
@@ -29,7 +30,9 @@ const Header = () => {
     <nav>
       <img src={menu} alt="menu" className="menu" />
       <div className="navbar-left">
-        <img src={logo} alt="logo" className="logo-nav" />
+        <Link role="button" className="link-logo" to="/">
+          <img src={logo} alt="logo" className="logo-nav" />
+        </Link>
         <ul ref={refCategoryContainer}>
           {categories?.map((category) => (
             <CategoryItem

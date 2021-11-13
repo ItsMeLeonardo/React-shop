@@ -4,6 +4,7 @@ import { ShoppingCartContext } from "@context/ShoppingCartContext";
 import OrderItem from "@components/OrderItem";
 import arrowIcon from "@icons/flechita.svg";
 import "@styles/MyOrder.scss";
+import { Link } from "react-router-dom";
 
 const MyOrder = ({ hideMyOrder }) => {
   const { shopCart, totalPrice } = useContext(ShoppingCartContext);
@@ -29,7 +30,9 @@ const MyOrder = ({ hideMyOrder }) => {
           </p>
           <p>${totalPrice}</p>
         </div>
-        <button className="primary-button">Checkout</button>
+        <Link to="/checkout">
+          <button className="primary-button">Checkout</button>
+        </Link>
       </div>
     </aside>
   );

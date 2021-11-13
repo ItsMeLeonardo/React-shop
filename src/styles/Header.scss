@@ -12,6 +12,10 @@ nav {
 .logo-nav {
   width: 100px;
 }
+.link-logo {
+  display: flex;
+  align-items: center;
+}
 .navbar-left ul,
 .navbar-right ul {
   list-style: none;

@@ -1,5 +1,8 @@
 import React, { useRef } from "react";
+
+import logoYard from "@logos/logo_yard_sale.svg";
 import "@styles/Login.scss";
+import { Link } from "react-router-dom";
 
 const Login = () => {
   const formRef = useRef(null);
@@ -19,7 +22,7 @@ const Login = () => {
   return (
     <div className="Login">
       <div className="Login-container">
-        <img src="./logos/logo_yard_sale.svg" alt="logo" className="logo" />
+        <img src={logoYard} alt="logo" className="logo" />
         <form className="form" ref={formRef} onSubmit={handleSubmit}>
           <label htmlFor="email" className="label">
             Email address
@@ -48,7 +51,9 @@ const Login = () => {
           />
           <a href="/">Forgot my password</a>
         </form>
-        <button className="secondary-button signup-button">Sign up</button>
+        <Link to="/signup">
+          <button className="secondary-button signup-button">Sign up</button>
+        </Link>
       </div>
     </div>
   );

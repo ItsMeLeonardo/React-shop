@@ -1,5 +1,6 @@
 import React from "react";
 import "@styles/CreateAccount.scss";
+import { Link } from "react-router-dom";
 
 const CreateAccount = () => {
   return (
@@ -36,11 +37,11 @@ const CreateAccount = () => {
               className="input input-password"
             />
           </div>
-          <input
-            type="submit"
-            value="Create"
-            className="primary-button login-button"
-          />
+          <Link to="/send-email">
+            <button type="submit" className="primary-button login-button">
+              Create
+            </button>
+          </Link>
         </form>
       </div>
     </div>

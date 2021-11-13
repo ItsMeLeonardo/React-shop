@@ -8,15 +8,15 @@ const MyAccount = () => {
         <h1 className="title">My account</h1>
         <form action="/" className="form">
           <div>
-            <label forHtml="name" className="label">
+            <label forhtml="name" className="label">
               Name
             </label>
-            <p className="value">Camila Yokoo</p>
-            <label forHtml="email" className="label">
+            <p className="value">Leonardo Cruces</p>
+            <label forhtml="email" className="label">
               Email
             </label>
-            <p className="value">camilayokoo@gmail.com</p>
-            <label forHtml="password" className="label">
+            <p className="value">carlosgamercovi20@gmail.com</p>
+            <label forhtml="password" className="label">
               Password
             </label>
             <p className="value">*********</p>
