@@ -9,6 +9,7 @@ const Home = () => {
   );
 };
 
-export default React.memo(Home, (prevProps, nextProps) => {
-  return prevProps.match.path === nextProps.match.path;
-});
+// export default React.memo(Home, (prevProps, nextProps) => {
+//   return prevProps.match.path === nextProps.match.path;
+// });
+export default Home;

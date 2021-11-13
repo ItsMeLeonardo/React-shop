@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 
 import "@styles/CategoryItem.scss";
 
-export default function CategoryItem({ category, parentRef }) {
+function CategoryItem({ category, parentRef }) {
   const categories = parentRef.current?.childNodes;
 
   useEffect(() => {
@@ -33,3 +33,7 @@ export default function CategoryItem({ category, parentRef }) {
     </li>
   );
 }
+
+export default React.memo(CategoryItem, (prevProps, nextProps) => {
+  return prevProps.category.name === nextProps.category.name;
+});

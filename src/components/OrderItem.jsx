@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { AppContext } from "@context/AppContext";
+import { ShoppingCartContext } from "@context/ShoppingCartContext";
 
 import closeIcon from "@icons/icon_close.png";
 import "@styles/OrderItem.scss";
@@ -16,7 +16,7 @@ const OrderItem = ({ product }) => {
   const { title, id, price, image, quantity } = product;
 
   const { removeFromCart, addToCart, removeOneFromCart } =
-    useContext(AppContext);
+    useContext(ShoppingCartContext);
 
   return (
     <div className="OrderItem">

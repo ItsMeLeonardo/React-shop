@@ -1,14 +1,6 @@
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 
-/**
- *
- * @param {Object} product an object with the without the quantity property
- * @returns
- */
-const INITIAL_STATE = {
-  // products: [],
-  cart: [],
-};
+const ShoppingCartContext = React.createContext({});
 
 const addQuantityToProduct = (product) => {
   return {
@@ -17,23 +9,20 @@ const addQuantityToProduct = (product) => {
   };
 };
 
-export function useInitialState() {
-  const [state, setState] = useState(INITIAL_STATE);
+function ShoppingCartProvider({ children }) {
+  const [shopCart, setShopCart] = useState([]);
   const [totalPrice, setTotalPrice] = useState(0);
   const [totalItems, setTotalItems] = useState(0);
 
   const addToCart = (product) => {
     try {
       const newProduct = addQuantityToProduct(product);
-      const productExists = state.cart.find((p) => p.id === product.id);
+      const productExists = shopCart.find((p) => p.id === product.id);
       if (productExists) {
         productExists.quantity += 1;
-        setState({ ...state });
+        setShopCart([...shopCart]);
       } else {
-        setState({
-          ...state,
-          cart: [...state.cart, newProduct],
-        });
+        setShopCart([...shopCart, newProduct]);
       }
       return true;
     } catch (error) {
@@ -46,8 +35,8 @@ export function useInitialState() {
 
   const removeFromCart = (id) => {
     try {
-      const newCart = state.cart.filter((product) => product.id !== id);
-      setState({ ...state, cart: newCart });
+      const newCart = shopCart.filter((product) => product.id !== id);
+      setShopCart(newCart);
       return true;
     } catch (error) {
       console.log(
@@ -58,40 +47,47 @@ export function useInitialState() {
   };
 
   const removeOneFromCart = (id) => {
-    const updatedCart = state.cart.find((product) => product.id === id);
+    const updatedCart = shopCart.find((product) => product.id === id);
     if (updatedCart.quantity > 1) {
       updatedCart.quantity -= 1;
-      setState({ ...state });
+      setShopCart([...shopCart]);
     } else {
       removeFromCart(id);
     }
   };
 
   const calculateTotalPrice = () => {
-    return state.cart.reduce((accumulator, product) => {
+    return shopCart.reduce((accumulator, product) => {
       return accumulator + product.price * product.quantity;
     }, 0);
   };
 
   const calculateTotalItems = () => {
-    return state.cart.reduce((accumulator, product) => {
-      return accumulator + product.quantity;
-    }, 0);
+    return shopCart.reduce(
+      (accumulator, product) => accumulator + product.quantity,
+      0
+    );
   };
-
-  const productIsCart = (id) => {};
 
   useEffect(() => {
     setTotalPrice(Number(calculateTotalPrice().toFixed(2)));
     setTotalItems(calculateTotalItems());
-  }, [state]);
+  }, [shopCart]);
 
-  return {
-    state,
+  const shoppingCartValue = {
+    shopCart,
     addToCart,
     removeFromCart,
     totalPrice,
     totalItems,
     removeOneFromCart,
   };
+
+  return (
+    <ShoppingCartContext.Provider value={shoppingCartValue}>
+      {children}
+    </ShoppingCartContext.Provider>
+  );
 }
+
+export { ShoppingCartContext, ShoppingCartProvider };

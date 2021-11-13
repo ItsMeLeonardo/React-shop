@@ -24,10 +24,10 @@ const ProductList = () => {
   return (
     <section className="main-container">
       <div className="ProductList">
-        {products.map((product) => (
+        {products?.map((product) => (
           <ProductItem
             key={product.title}
-            {...product}
+            product={product}
             openDetail={handleDetailOpen}
           />
         ))}
@@ -39,4 +39,5 @@ const ProductList = () => {
   );
 };
 
-export default React.memo(ProductList);
+// export default React.memo(ProductList);
+export default ProductList;

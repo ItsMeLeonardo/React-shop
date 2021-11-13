@@ -3,7 +3,7 @@ import React, { useContext, useRef, useState } from "react";
 import Menu from "@components/Menu";
 import CategoryItem from "@components/CategoryItem";
 import MyOrder from "@containers/MyOrder";
-import { AppContext } from "@context/AppContext";
+import { ShoppingCartContext } from "@context/ShoppingCartContext";
 import useGetCategories from "@hooks/useGetCategories";
 
 import menu from "@icons/icon_menu.svg";
@@ -12,7 +12,7 @@ import iconShoppingCart from "@icons/icon_shopping_cart.svg";
 import "@styles/Header.scss";
 
 const Header = () => {
-  const { state, totalItems } = useContext(AppContext);
+  const { shopCart, totalItems } = useContext(ShoppingCartContext);
   const [toggleMenu, setToggleMenu] = useState(false);
   const [toggleOrders, setToggleOrders] = useState("");
   const { categories } = useGetCategories();
@@ -47,7 +47,7 @@ const Header = () => {
           </li>
           <li className="btn navbar-shopping-cart" onClick={handleToggleOrder}>
             <img src={iconShoppingCart} alt="shopping cart" />
-            {!!state.cart.length && <div>{totalItems}</div>}
+            {!!shopCart.length && <div>{totalItems}</div>}
           </li>
         </ul>
       </div>
@@ -57,4 +57,4 @@ const Header = () => {
   );
 };
 
-export default React.memo(Header);
+export default Header;

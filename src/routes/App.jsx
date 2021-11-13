@@ -12,18 +12,18 @@ import CreateAccount from "@pages/CreateAccount";
 import Checkout from "@pages/Checkout";
 import Orders from "@pages/Orders";
 import NotFound from "@pages/NotFound";
-import { useInitialState } from "@hooks/useInitialState";
-import { AppContextProvider } from "../context/AppContext";
+// import { useShoppingCart } from "@hooks/useShoppingCart";
+import { ShoppingCartProvider } from "../context/ShoppingCartContext";
 
 import "@styles/global.css";
 import { ProductContextProvider } from "../context/ProductContext";
 
 const App = () => {
-  const initialState = useInitialState();
+  // const initialState = useShoppingCart();
 
   return (
     <ProductContextProvider>
-      <AppContextProvider value={initialState}>
+      <ShoppingCartProvider>
         <BrowserRouter>
           <Layout>
             <Switch>
@@ -44,7 +44,7 @@ const App = () => {
             </Switch>
           </Layout>
         </BrowserRouter>
-      </AppContextProvider>
+      </ShoppingCartProvider>
     </ProductContextProvider>
   );
 };

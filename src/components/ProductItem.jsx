@@ -3,16 +3,16 @@ import React, { useContext, useState } from "react";
 import "@styles/ProductItem.scss";
 import iconAddToCart from "@icons/bt_add_to_cart.svg";
 import iconAddedToCart from "@icons/bt_added_to_cart.svg";
-import { AppContext } from "../context/AppContext";
+import { ShoppingCartContext } from "../context/ShoppingCartContext";
 
-const ProductItem = (props) => {
+function ProductItem({ product }) {
   const [productInCart, setProductInCart] = useState(false);
-  const { title, image, price, id, openDetail } = props;
+  const { title, image, price, id, openDetail } = product;
 
-  const { addToCart, removeFromCart } = useContext(AppContext);
+  const { addToCart, removeFromCart } = useContext(ShoppingCartContext);
 
   const handleToggleCart = (product) => {
-    setProductInCart(!productInCart);
+    // setProductInCart(!productInCart);
     if (productInCart) {
       setProductInCart(!removeFromCart(id));
     } else {
@@ -35,7 +35,7 @@ const ProductItem = (props) => {
           <p>{title}</p>
         </div>
         <figure
-          onClick={() => handleToggleCart(props)}
+          onClick={() => handleToggleCart(product)}
           className="btn btn-icon"
           role="button"
         >
@@ -47,8 +47,11 @@ const ProductItem = (props) => {
       </div>
     </div>
   );
-};
+}
 
 export default React.memo(ProductItem, (prevProps, nextProps) => {
-  return prevProps.id === nextProps.id;
+  console.log("prev", prevProps.product.title);
+  console.log("next", nextProps.product.title);
+  console.log(prevProps.product.title === nextProps.product.title);
+  return prevProps.product.title === nextProps.product.title;
 });
