@@ -1,7 +1,9 @@
 import React from "react";
-import "@styles/SendEmail.scss";
+import { Link } from "react-router-dom";
+
 import logo from "@logos/logo_yard_sale.svg";
 import emailIcon from "@icons/email.svg";
+import "@styles/SendEmail.scss";
 
 const SendEmail = () => {
   return (
@@ -15,7 +17,9 @@ const SendEmail = () => {
         <div className="email-image">
           <img src={emailIcon} alt="email" />
         </div>
-        <button className="primary-button login-button">Login</button>
+        <Link to="/login" className="Link">
+          <button className="primary-button login-button">Login</button>
+        </Link>
         <p className="resend">
           <span>Didn't receive the email?</span>
           <a href="/">Resend</a>

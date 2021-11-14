@@ -21,6 +21,9 @@ const Header = () => {
 
   const handleToggleMenu = () => {
     setToggleMenu(!toggleMenu);
+    setTimeout(() => {
+      setToggleMenu(false);
+    }, 4000);
   };
   const handleToggleOrder = () => {
     setToggleOrders(!toggleOrders);

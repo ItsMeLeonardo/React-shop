@@ -1,5 +1,6 @@
 * {
   outline: none;
+  font-family: "Quicksand", sans-serif;
 }
 [role="button"] {
   cursor: pointer;
@@ -24,4 +25,21 @@ body {
 .glass-dark {
   background-color: rgba(17, 25, 40, 0.75);
   border: 1px solid rgba(255, 255, 255, 0.125);
+}
+
+/* ERROR FIELDS*/
+.error {
+  background: var(--error-light);
+  border: 1px solid var(--error-dark);
+  box-shadow: 0 0 0 transparent;
+  transition: box-shadow 0.3s ease;
+}
+.error:focus {
+  box-shadow: 0 0 0 1px var(--error-dark);
+}
+.error-message {
+  color: var(--error-dark);
+  font-size: var(--sm);
+  font-weight: bold;
+  margin-bottom: 0.25rem;
 }
