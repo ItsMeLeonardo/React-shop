@@ -1,10 +1,13 @@
-import React from "react";
-import OrderItem from "@components/OrderItem";
-import Menu from "@components/Menu";
+import React, { useContext } from "react";
+import { ShoppingCartContext } from "@context/ShoppingCartContext";
+import Time from "@components/Time";
+
 import "@styles/Checkout.scss";
 
 // TODO: complete checkout page
 const Checkout = () => {
+  const { shopCart, totalPrice, totalItems } = useContext(ShoppingCartContext);
+
   return (
     <div className="Checkout">
       <div className="Checkout-container">
@@ -12,13 +15,15 @@ const Checkout = () => {
         <div className="Checkout-content">
           <div className="order">
             <p>
-              <span>03.25.21</span>
-              <span>6 articles</span>
+              <Time />
+              <span>{totalItems} articles</span>
             </p>
-            <p>$560.00</p>
+            <p>${totalPrice}</p>
           </div>
         </div>
-        {/* <OrderItem /> */}
+        {shopCart.map((product) => (
+          <OrderItem key={`orderItem-${product?.id}`} product={product} />
+        ))}
       </div>
     </div>
   );

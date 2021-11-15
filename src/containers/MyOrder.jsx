@@ -1,10 +1,10 @@
 import React, { useContext } from "react";
+import { Link } from "react-router-dom";
 import { ShoppingCartContext } from "@context/ShoppingCartContext";
 
 import OrderItem from "@components/OrderItem";
 import arrowIcon from "@icons/flechita.svg";
 import "@styles/MyOrder.scss";
-import { Link } from "react-router-dom";
 
 const MyOrder = ({ hideMyOrder }) => {
   const { shopCart, totalPrice } = useContext(ShoppingCartContext);

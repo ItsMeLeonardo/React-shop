@@ -2,9 +2,7 @@ import React, { useContext } from "react";
 import OrderItem from "@components/OrderItem";
 import "@styles/Orders.scss";
 import { ShoppingCartContext } from "@context/ShoppingCartContext";
-
-const dateOfOrder = new Date().toDateString();
-const dateOfOrderISO = new Date().toISOString();
+import Time from "@components/Time";
 
 // TODO: this component is for [orders - total-sales]
 const Orders = () => {
@@ -18,9 +16,7 @@ const Orders = () => {
         <div className="Orders-content">
           <div className="Order-info">
             <header className="Order-data">
-              <time className="Order-date-time" datatime={dateOfOrderISO}>
-                {dateOfOrder}
-              </time>
+              <Time />
               <span className="Order-total-items">{totalItems} items</span>
             </header>
             <p>
