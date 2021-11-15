@@ -8,16 +8,21 @@ export default function useUser() {
 
   const login = useCallback(
     ({ username, password }) => {
-      loginService(username, password).then((res) => {
-        if (res.status === "Error") {
-          setError(res);
-          setTimeout(() => {
-            setError(null);
-          }, 5000);
-        } else {
-          setJwt(res.token);
-        }
-      });
+      loginService(username, password)
+        .then((res) => {
+          if (res.status === "Error") {
+            setError(res);
+            setTimeout(() => {
+              setError(null);
+            }, 5000);
+          } else {
+            sessionStorage.setItem("jwt", res.token);
+            setJwt(res.token);
+          }
+        })
+        .catch(() => {
+          sessionStorage.removeItem("jwt");
+        });
     },
     [setJwt]
   );
