@@ -13,6 +13,7 @@ import menu from "@icons/icon_menu.svg";
 import logo from "@logos/logo_yard_sale.svg";
 import iconShoppingCart from "@icons/icon_shopping_cart.svg";
 import "@styles/Header.scss";
+import useUserInfo from "../hooks/useUserInfo";
 
 const Header = () => {
   const { shopCart, totalItems } = useContext(ShoppingCartContext);
@@ -20,6 +21,7 @@ const Header = () => {
   const [toggleMenu, setToggleMenu] = useState(false);
   const { categories } = useGetCategories();
   const { isLogged } = useUser();
+  const { user } = useUserInfo();
   const refCategoryContainer = useRef(null);
 
   const handleToggleMenu = () => {
@@ -54,7 +56,7 @@ const Header = () => {
         <ul>
           {isLogged ? (
             <li className="navbar-email" onClick={handleToggleMenu}>
-              platzi@example.com
+              {user?.email}
             </li>
           ) : (
             <Link to="/login" className="navbar-email">

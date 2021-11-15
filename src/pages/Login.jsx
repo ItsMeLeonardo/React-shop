@@ -4,9 +4,11 @@ import useUser from "@hooks/useUser";
 
 import logoYard from "@logos/logo_yard_sale.svg";
 import "@styles/Login.scss";
+import useUserInfo from "../hooks/useUserInfo";
 
 const Login = () => {
   const { isLogged, login, error } = useUser();
+  const { findUser } = useUserInfo();
   const formRef = useRef(null);
   const history = useHistory();
 
@@ -28,6 +30,7 @@ const Login = () => {
       password: fromData.get("password"),
     };
     login(data);
+    findUser(data);
   };
 
   return (
