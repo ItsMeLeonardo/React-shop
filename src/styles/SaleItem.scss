@@ -1,0 +1,44 @@
+@import "vars";
+
+.Sale-Item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  transition: background 0.3s ease;
+  padding: 0 0.5rem;
+  border-radius: 0.8em;
+}
+.Sale-Item:hover {
+  background: var(--text-input-field);
+}
+.Sale-Info {
+  display: flex;
+  flex-direction: column;
+}
+.Sale-details {
+  display: flex;
+  gap: 1rem;
+}
+.Sale-price {
+  white-space: nowrap;
+}
+.Sale-icon {
+  transition: 0.5s transform ease-in-out;
+}
+
+.Sale-Item:hover .Sale-icon {
+  animation: float 2s infinite;
+}
+
+@keyframes float {
+  0% {
+    transform: translateX(0);
+  }
+  50% {
+    transform: translateX(0.5rem);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
