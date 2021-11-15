@@ -34,15 +34,15 @@ const CreateAccount = () => {
 
   const onSubmit = (data) => {
     console.log(data);
-    // setTimeout(() => {
-    //   history.push("/send-email");
-    // }, 4000);
+    setTimeout(() => {
+      history.push("/send-email");
+    }, 1500);
   };
 
   return (
     <div className="CreateAccount">
       <div className="CreateAccount-container">
-        <h1 className="title">My account</h1>
+        <h1 className="title">Sign up</h1>
 
         <form onSubmit={handleSubmit(onSubmit)} className="form">
           <div>

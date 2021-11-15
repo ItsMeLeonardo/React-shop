@@ -1,11 +1,10 @@
 import React, { useEffect, useRef, useState } from "react";
-import { useHistory } from "react-router-dom";
+import { useHistory, Link } from "react-router-dom";
 import useUser from "@hooks/useUser";
 
 import logoYard from "@logos/logo_yard_sale.svg";
 import "@styles/Login.scss";
 
-// TODO: add service for login
 const Login = () => {
   const { isLogged, login, error } = useUser();
   const formRef = useRef(null);
@@ -34,6 +33,7 @@ const Login = () => {
   return (
     <div className="Login">
       <div className="Login-container">
+        <h1 className="title">Sign in</h1>
         <img src={logoYard} alt="logo" className="logo" />
         <form className="form" ref={formRef} onSubmit={handleSubmit}>
           {/* <label htmlFor="email" className="label">
@@ -75,7 +75,9 @@ const Login = () => {
           />
           <a href="/">Forgot my password</a>
         </form>
-        <button className="secondary-button signup-button">Sign up</button>
+        <Link to="/signup">
+          <button className="secondary-button signup-button">Sign up</button>
+        </Link>
       </div>
     </div>
   );

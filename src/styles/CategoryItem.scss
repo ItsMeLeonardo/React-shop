@@ -10,7 +10,7 @@
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  max-width: 100px;
+  max-width: max-content;
 }
 .category-item:hover {
   border: 1px solid var(--hospital-green);
