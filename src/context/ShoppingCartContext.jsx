@@ -10,7 +10,11 @@ const addQuantityToProduct = (product) => {
 };
 
 function ShoppingCartProvider({ children }) {
-  const [shopCart, setShopCart] = useState([]);
+  // get shopping cart from session storage or create an empty Array
+  const [shopCart, setShopCart] = useState(() => {
+    const shopCart = sessionStorage.getItem("shopCart");
+    return shopCart ? JSON.parse(shopCart) : [];
+  });
   const [totalPrice, setTotalPrice] = useState(0);
   const [totalItems, setTotalItems] = useState(0);
 
@@ -98,6 +102,7 @@ function ShoppingCartProvider({ children }) {
   useEffect(() => {
     setTotalPrice(Number(calculateTotalPrice().toFixed(2)));
     setTotalItems(calculateTotalItems());
+    sessionStorage.setItem("shopCart", JSON.stringify(shopCart));
   }, [shopCart]);
 
   const shoppingCartValue = {

@@ -1,10 +1,10 @@
 import React, { useContext } from "react";
 import { ShoppingCartContext } from "@context/ShoppingCartContext";
+import OrderItem from "@components/OrderItem";
 import Time from "@components/Time";
 
 import "@styles/Checkout.scss";
 
-// TODO: complete checkout page
 const Checkout = () => {
   const { shopCart, totalPrice, totalItems } = useContext(ShoppingCartContext);
 
@@ -21,8 +21,12 @@ const Checkout = () => {
             <p>${totalPrice}</p>
           </div>
         </div>
-        {shopCart.map((product) => (
-          <OrderItem key={`orderItem-${product?.id}`} product={product} />
+        {shopCart?.map((product) => (
+          <OrderItem
+            key={`orderItem-${product?.id}`}
+            dynamicItem={false}
+            product={product}
+          />
         ))}
       </div>
     </div>

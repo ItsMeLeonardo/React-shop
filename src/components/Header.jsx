@@ -63,7 +63,7 @@ const Header = () => {
           )}
           <li className="btn navbar-shopping-cart" onClick={handleToggleOrder}>
             <img src={iconShoppingCart} alt="shopping cart" />
-            {!!shopCart.length && <div>{totalItems}</div>}
+            {!!shopCart?.length && <div>{totalItems}</div>}
           </li>
         </ul>
       </div>

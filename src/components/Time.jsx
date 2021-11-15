@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function Time({ date }) {
+function Time({ date }) {
   const formattedDate = (date) => {
     const dateObj = date ? new Date(date) : new Date();
     const formatted = dateObj.toDateString();
@@ -17,3 +17,5 @@ export default function Time({ date }) {
     </time>
   );
 }
+
+export default React.memo(Time);

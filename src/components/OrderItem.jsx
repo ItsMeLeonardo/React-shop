@@ -24,8 +24,8 @@ const OrderItem = ({ product, dynamicItem = true } = {}) => {
         <img src={image} alt={title} />
       </figure>
 
-      {dynamicItem && (
-        <div className="OrderItem-content-quantity">
+      <div className="OrderItem-content-quantity">
+        {dynamicItem && (
           <Button type="small" onClick={() => addToCart(product)}>
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -42,7 +42,11 @@ const OrderItem = ({ product, dynamicItem = true } = {}) => {
               />
             </svg>
           </Button>
-          <span className="OrderItem-quantity">{quantity}</span>
+        )}
+
+        <span className="OrderItem-quantity">{quantity}</span>
+
+        {dynamicItem && (
           <Button type="small" onClick={() => removeOneFromCart(id)}>
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -59,8 +63,8 @@ const OrderItem = ({ product, dynamicItem = true } = {}) => {
               />
             </svg>
           </Button>
-        </div>
-      )}
+        )}
+      </div>
 
       <p>{hiddenTitle(title)}</p>
       <p>${price * quantity}</p>
