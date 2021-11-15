@@ -1,28 +1,34 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
+import { useHistory } from "react-router-dom";
+import useUser from "@hooks/useUser";
 
 import logoYard from "@logos/logo_yard_sale.svg";
 import "@styles/Login.scss";
-import { useHistory } from "react-router-dom";
 
 // TODO: add service for login
 const Login = () => {
-  const [loginError, setLoginError] = useState(false);
+  const { isLogged, login, error } = useUser();
   const formRef = useRef(null);
   const history = useHistory();
+
+  useEffect(() => {
+    if (isLogged) {
+      setTimeout(() => {
+        history.push("/");
+      }, 1500);
+    }
+  }, [isLogged, history]);
 
   const handleSubmit = (event) => {
     event.preventDefault();
 
     const fromData = new FormData(formRef.current);
     const data = {
-      email: fromData.get("email"),
+      // email: fromData.get("email"),
+      username: fromData.get("username"),
       password: fromData.get("password"),
     };
-
-    // setTimeout(() => {
-    //   history.push("/");
-    // }, 4000);
-    console.log(data);
+    login(data);
   };
 
   return (
@@ -30,12 +36,7 @@ const Login = () => {
       <div className="Login-container">
         <img src={logoYard} alt="logo" className="logo" />
         <form className="form" ref={formRef} onSubmit={handleSubmit}>
-          {loginError && (
-            <span className="error-message">
-              Please check your information, the email or password are incorrect
-            </span>
-          )}
-          <label htmlFor="email" className="label">
+          {/* <label htmlFor="email" className="label">
             Email address
           </label>
           <input
@@ -43,7 +44,17 @@ const Login = () => {
             id="email"
             name="email"
             placeholder="platzi@example.cm"
-            className={`input input-email ${loginError ? "error" : ""}`}
+            className={`input input-email ${error ? "error" : ""}`}
+          /> */}
+          <label htmlFor="username" className="label">
+            Username
+          </label>
+          <input
+            type="text"
+            id="username"
+            name="username"
+            placeholder="platzi@example.cm"
+            className={`input input-email ${error ? "error" : ""}`}
           />
 
           <label htmlFor="password" className="label">
@@ -54,9 +65,9 @@ const Login = () => {
             id="password"
             name="password"
             placeholder="*********"
-            className={`input input-password ${loginError ? "error" : ""}`}
+            className={`input input-password ${error ? "error" : ""}`}
           />
-
+          {error && <span className="error-message">{error.msg}</span>}
           <input
             type="submit"
             value="Log in"

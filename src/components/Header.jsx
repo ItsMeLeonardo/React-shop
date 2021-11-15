@@ -1,27 +1,31 @@
 import React, { useContext, useRef, useState } from "react";
+import { Link } from "react-router-dom";
 
 import Menu from "@components/Menu";
 import CategoryItem from "@components/CategoryItem";
 import MyOrder from "@containers/MyOrder";
-import { ShoppingCartContext } from "@context/ShoppingCartContext";
 import useGetCategories from "@hooks/useGetCategories";
+import useUser from "@hooks/useUser";
+
+import { ShoppingCartContext } from "@context/ShoppingCartContext";
 
 import menu from "@icons/icon_menu.svg";
 import logo from "@logos/logo_yard_sale.svg";
 import iconShoppingCart from "@icons/icon_shopping_cart.svg";
 import "@styles/Header.scss";
-import { Link } from "react-router-dom";
 
 const Header = () => {
   const { shopCart, totalItems } = useContext(ShoppingCartContext);
+  const [toggleOrders, setToggleOrders] = useState(false);
   const [toggleMenu, setToggleMenu] = useState(false);
-  const [toggleOrders, setToggleOrders] = useState("");
   const { categories } = useGetCategories();
+  const { isLogged } = useUser();
   const refCategoryContainer = useRef(null);
 
   const handleToggleMenu = () => {
     setToggleMenu(!toggleMenu);
     setTimeout(() => {
+      // after 4s the menu will be closed
       setToggleMenu(false);
     }, 4000);
   };
@@ -48,9 +52,15 @@ const Header = () => {
       </div>
       <div className="navbar-right">
         <ul>
-          <li className="navbar-email" onClick={handleToggleMenu}>
-            platzi@example.com
-          </li>
+          {isLogged ? (
+            <li className="navbar-email" onClick={handleToggleMenu}>
+              platzi@example.com
+            </li>
+          ) : (
+            <Link to="/login" className="navbar-email">
+              Sign in
+            </Link>
+          )}
           <li className="btn navbar-shopping-cart" onClick={handleToggleOrder}>
             <img src={iconShoppingCart} alt="shopping cart" />
             {!!shopCart.length && <div>{totalItems}</div>}

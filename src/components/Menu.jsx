@@ -1,8 +1,12 @@
 import React from "react";
-import "@styles/Menu.scss";
 import { Link } from "react-router-dom";
+import useUser from "../hooks/useUser";
+
+import "@styles/Menu.scss";
 
 const Menu = () => {
+  const { logout } = useUser();
+
   return (
     <div className="Menu glass-light">
       <ul className="Menu-list">
@@ -16,7 +20,7 @@ const Menu = () => {
             My account
           </Link>
         </li>
-        <li className="BtnContent">
+        <li className="BtnContent" onClick={() => logout()}>
           <Link to="/login" className="MenuBtn textBtnAlert">
             Sign out
           </Link>

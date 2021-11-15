@@ -56,6 +56,7 @@ const CreateAccount = () => {
             )}
             <input
               type="text"
+              id="name"
               placeholder="Your name here"
               className={`input input-name ${errors.name ? "error" : ""}`}
               {...register("name", VALIDATION.name)}
@@ -69,6 +70,7 @@ const CreateAccount = () => {
             )}
             <input
               type="email"
+              id="email"
               className={`input input-email ${errors.email ? "error" : ""}`}
               placeholder="platzi@example.com"
               {...register("email", VALIDATION.email)}
@@ -82,6 +84,7 @@ const CreateAccount = () => {
             )}
             <input
               type="password"
+              id="password"
               placeholder="*********"
               className={`input input-password ${
                 errors.password ? "error" : ""
