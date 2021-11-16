@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import ProductItem from "@components/ProductItem";
 import useProducts from "@hooks/useProducts";
-import "@styles/ProductList.scss";
 import PortalProductDetail from "./ProductDetail";
+
+import ProductLoader from "@loaders/ProductLoader";
+import "@styles/ProductList.scss";
 
 const ProductList = () => {
   const { products, loading } = useProducts();
@@ -18,7 +20,13 @@ const ProductList = () => {
   };
 
   if (loading) {
-    return <div>Loading...</div>;
+    return (
+      <div className="ProductList">
+        {new Array(8).fill().map((_, index) => (
+          <ProductLoader key={index} />
+        ))}
+      </div>
+    );
   }
 
   return (
