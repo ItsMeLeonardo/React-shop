@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import { ShoppingCartContext } from "@context/ShoppingCartContext";
+import useUser from "@hooks/useUser";
 
 import OrderItem from "@components/OrderItem";
 import arrowIcon from "@icons/flechita.svg";
@@ -8,6 +9,7 @@ import "@styles/MyOrder.scss";
 
 const MyOrder = ({ hideMyOrder }) => {
   const { shopCart, totalPrice } = useContext(ShoppingCartContext);
+  const { isLogged } = useUser();
 
   return (
     <aside className="MyOrder">
@@ -30,8 +32,10 @@ const MyOrder = ({ hideMyOrder }) => {
           </p>
           <p>${totalPrice}</p>
         </div>
-        <Link to="/checkout">
-          <button className="primary-button">Checkout</button>
+        <Link to={isLogged ? "/checkout" : "/login"}>
+          <button className="primary-button" onClick={hideMyOrder}>
+            Checkout
+          </button>
         </Link>
       </div>
     </aside>

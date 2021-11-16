@@ -21,6 +21,6 @@ const ProductDetail = ({ id, onClose }) => {
 export default function PortalProductDetail({ id, onClose }) {
   return ReactDOM.createPortal(
     <ProductDetail id={id} onClose={onClose} />,
-    document.getElementById("root-detail")
+    document.getElementById("root-modal")
   );
 }
