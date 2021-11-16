@@ -4,10 +4,12 @@ import loginService from "@services/login";
 
 export default function useUser() {
   const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(false);
   const { jwt, setJwt } = useContext(UserContext);
 
   const login = useCallback(
     ({ username, password }) => {
+      setLoading(true);
       loginService(username, password)
         .then((res) => {
           if (res.status === "Error") {
@@ -17,6 +19,7 @@ export default function useUser() {
             }, 5000);
           } else {
             sessionStorage.setItem("jwt", res.token);
+            setLoading(false);
             setJwt(res.token);
           }
         })
@@ -36,5 +39,6 @@ export default function useUser() {
     login,
     logout,
     error,
+    loading,
   };
 }

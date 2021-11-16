@@ -7,16 +7,14 @@ import "@styles/Login.scss";
 import useUserInfo from "../hooks/useUserInfo";
 
 const Login = () => {
-  const { isLogged, login, error } = useUser();
+  const { isLogged, login, error, loading } = useUser();
   const { findUser } = useUserInfo();
   const formRef = useRef(null);
   const history = useHistory();
 
   useEffect(() => {
-    if (isLogged) {
-      setTimeout(() => {
-        history.push("/");
-      }, 1500);
+    if (isLogged && !loading) {
+      history.push("/");
     }
   }, [isLogged, history]);
 
@@ -74,7 +72,9 @@ const Login = () => {
           <input
             type="submit"
             value="Log in"
-            className="primary-button login-button"
+            className={`${
+              loading ? "loading" : ""
+            } primary-button login-button`}
           />
           <a href="/">Forgot my password</a>
         </form>
