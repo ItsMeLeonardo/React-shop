@@ -1,6 +1,6 @@
-import React, { useContext } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
-import { ShoppingCartContext } from "@context/ShoppingCartContext";
+import useShoppingCart from "@hooks/useShoppingCart";
 import useUser from "@hooks/useUser";
 
 import OrderItem from "@components/OrderItem";
@@ -8,7 +8,7 @@ import arrowIcon from "@icons/flechita.svg";
 import "@styles/MyOrder.scss";
 
 const MyOrder = ({ hideMyOrder }) => {
-  const { shopCart, totalPrice } = useContext(ShoppingCartContext);
+  const { shopCart, totalPrice } = useShoppingCart();
   const { isLogged } = useUser();
 
   return (

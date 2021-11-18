@@ -64,6 +64,11 @@
   margin-top: 14px;
   margin-bottom: 30px;
 }
+.small-text {
+  color: var(--hospital-green);
+  font-size: var(--sm);
+  text-align: center;
+}
 @media (max-width: 640px) {
   .form-container {
     height: 100%;

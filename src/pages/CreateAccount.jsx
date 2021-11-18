@@ -1,5 +1,5 @@
 import React from "react";
-import { useHistory } from "react-router-dom";
+import { useHistory, Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
 
 import "@styles/CreateAccount.scss";
@@ -42,7 +42,7 @@ const CreateAccount = () => {
   return (
     <div className="CreateAccount">
       <div className="CreateAccount-container">
-        <h1 className="title">Sign up</h1>
+        <h1 className="title">Sing Up</h1>
 
         <form onSubmit={handleSubmit(onSubmit)} className="form">
           <div>
@@ -97,6 +97,12 @@ const CreateAccount = () => {
             Create
           </button>
         </form>
+        <p className="small-text">
+          <span>do you have an account?</span>
+        </p>
+        <Link to="/login">
+          <button className="secondary-button">Sign in</button>
+        </Link>
       </div>
     </div>
   );

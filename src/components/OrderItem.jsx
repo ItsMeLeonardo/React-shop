@@ -1,5 +1,5 @@
-import React, { useContext } from "react";
-import { ShoppingCartContext } from "@context/ShoppingCartContext";
+import React from "react";
+import useShoppingCart from "@hooks/useShoppingCart";
 
 import closeIcon from "@icons/icon_close.png";
 import "@styles/OrderItem.scss";
@@ -15,8 +15,7 @@ const hiddenTitle = (title) => {
 const OrderItem = ({ product, dynamicItem = true } = {}) => {
   const { title, id, price, image, quantity } = product;
 
-  const { removeFromCart, addToCart, removeOneFromCart } =
-    useContext(ShoppingCartContext);
+  const { removeFromCart, addToCart, removeOneFromCart } = useShoppingCart();
 
   return (
     <div className="OrderItem">

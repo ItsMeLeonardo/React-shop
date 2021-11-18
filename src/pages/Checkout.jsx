@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { ShoppingCartContext } from "@context/ShoppingCartContext";
+import useShoppingCart from "@hooks/useShoppingCart";
 import OrderItem from "@components/OrderItem";
 import Time from "@components/Time";
 
@@ -9,8 +9,7 @@ import { Link } from "react-router-dom";
 
 // TODO: add modal to confirm [Thank you for your sale :D]
 const Checkout = () => {
-  const { shopCart, totalPrice, totalItems, pay } =
-    useContext(ShoppingCartContext);
+  const { shopCart, totalPrice, totalItems, pay } = useShoppingCart();
 
   return (
     <div className="Checkout">

@@ -1,4 +1,4 @@
-import React, { useContext, useRef, useState } from "react";
+import React, { useRef, useState } from "react";
 import { Link } from "react-router-dom";
 
 import Menu from "@components/Menu";
@@ -6,8 +6,7 @@ import CategoryItem from "@components/CategoryItem";
 import MyOrder from "@containers/MyOrder";
 import useGetCategories from "@hooks/useGetCategories";
 import useUser from "@hooks/useUser";
-
-import { ShoppingCartContext } from "@context/ShoppingCartContext";
+import useShoppingCart from "@hooks/useShoppingCart";
 
 import menu from "@icons/icon_menu.svg";
 import logo from "@logos/logo_yard_sale.svg";
@@ -16,7 +15,7 @@ import "@styles/Header.scss";
 import useUserInfo from "../hooks/useUserInfo";
 
 const Header = () => {
-  const { shopCart, totalItems } = useContext(ShoppingCartContext);
+  const { shopCart, totalItems } = useShoppingCart();
   const [toggleOrders, setToggleOrders] = useState(false);
   const [toggleMenu, setToggleMenu] = useState(false);
   const { categories } = useGetCategories();

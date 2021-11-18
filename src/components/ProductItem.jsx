@@ -1,15 +1,15 @@
-import React, { useContext, useState } from "react";
+import React, { useState } from "react";
+import useShoppingCart from "@hooks/useShoppingCart";
 
 import iconAddToCart from "@icons/bt_add_to_cart.svg";
 import iconAddedToCart from "@icons/bt_added_to_cart.svg";
-import { ShoppingCartContext } from "@context/ShoppingCartContext";
 import "@styles/ProductItem.scss";
 
 function ProductItem({ product, openDetail }) {
   const [productInCart, setProductInCart] = useState(false);
   const { title, image, price, id } = product;
 
-  const { addToCart, removeFromCart } = useContext(ShoppingCartContext);
+  const { addToCart, removeFromCart } = useShoppingCart();
 
   const handleToggleCart = (product) => {
     if (productInCart) {
