@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import ProductItem from "@components/ProductItem";
 import useProducts from "@hooks/useProducts";
+import useShoppingCart from "@hooks/useShoppingCart";
 import PortalProductDetail from "./ProductDetail";
 
 import ProductLoader from "@loaders/ProductLoader";
@@ -9,6 +10,7 @@ import "@styles/ProductList.scss";
 // FIXME: resolve the rerendering problem :c
 const ProductList = () => {
   const { products, loading } = useProducts();
+  const { addToCart, removeFromCart } = useShoppingCart();
   const [detailOpen, setDetailOpen] = useState(false);
   const [idProductDetail, setIdProductDetail] = useState(1);
 
@@ -35,9 +37,11 @@ const ProductList = () => {
       <div className="ProductList">
         {products?.map((product) => (
           <ProductItem
-            key={product.title}
+            key={product.title?.slice(0, 18)}
             product={product}
             openDetail={handleDetailOpen}
+            addToCart={addToCart}
+            removeFromCart={removeFromCart}
           />
         ))}
       </div>

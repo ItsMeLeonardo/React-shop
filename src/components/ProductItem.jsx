@@ -5,11 +5,11 @@ import iconAddToCart from "@icons/bt_add_to_cart.svg";
 import iconAddedToCart from "@icons/bt_added_to_cart.svg";
 import "@styles/ProductItem.scss";
 
-function ProductItem({ product, openDetail }) {
+function ProductItem({ product, openDetail, addToCart, removeFromCart }) {
   const [productInCart, setProductInCart] = useState(false);
   const { title, image, price, id } = product;
 
-  const { addToCart, removeFromCart } = useShoppingCart();
+  // const { addToCart, removeFromCart } = useShoppingCart();
 
   const handleToggleCart = (product) => {
     if (productInCart) {

@@ -1,4 +1,4 @@
-import { useContext, useEffect, useCallback } from "react";
+import { useContext } from "react";
 import { ShoppingCartContext } from "@context/ShoppingCartContext";
 
 const addQuantityToProduct = (product) => {
@@ -9,14 +9,8 @@ const addQuantityToProduct = (product) => {
 };
 
 export default function useShoppingCart() {
-  const {
-    shopCart,
-    setShopCart,
-    totalPrice,
-    setTotalPrice,
-    totalItems,
-    setTotalItems,
-  } = useContext(ShoppingCartContext);
+  const { shopCart, setShopCart, totalPrice, totalItems, pay } =
+    useContext(ShoppingCartContext);
 
   /**
    *
@@ -30,8 +24,10 @@ export default function useShoppingCart() {
         productExists.quantity += 1;
         setShopCart([...shopCart]);
       } else {
-        const newProduct = addQuantityToProduct(product);
-        setShopCart([...shopCart, newProduct]);
+        const newProduct = product.quantity
+          ? product
+          : addQuantityToProduct(product);
+        setShopCart((prevShopCart) => prevShopCart.concat(newProduct));
       }
       return true;
     } catch (error) {
@@ -77,48 +73,6 @@ export default function useShoppingCart() {
       return 0;
     }
   };
-
-  const pay = useCallback(() => {
-    setShopCart([]);
-  }, [setShopCart]);
-
-  /**
-   *
-   * @returns {Number} the total price of the cart
-   */
-  const calculateTotalPrice = () => {
-    return shopCart.reduce((accumulator, product) => {
-      return accumulator + product.price * product.quantity;
-    }, 0);
-  };
-  // const calculateTotalPrice = useCallback(() => {
-  //   return shopCart.reduce((accumulator, product) => {
-  //     return accumulator + product.price * product.quantity;
-  //   }, 0);
-  // }, []);
-
-  /**
-   *
-   * @returns {Number} the total items in the cart
-   */
-  const calculateTotalItems = () => {
-    return shopCart.reduce(
-      (accumulator, product) => accumulator + product.quantity,
-      0
-    );
-  };
-  // const calculateTotalItems = useCallback(() => {
-  //   return shopCart.reduce(
-  //     (accumulator, product) => accumulator + product.quantity,
-  //     0
-  //   );
-  // }, []);
-
-  useEffect(() => {
-    setTotalPrice(Number(calculateTotalPrice().toFixed(2)));
-    setTotalItems(calculateTotalItems());
-    sessionStorage.setItem("shopCart", JSON.stringify(shopCart));
-  }, [shopCart]);
 
   return {
     shopCart,
