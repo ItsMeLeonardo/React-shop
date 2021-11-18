@@ -6,6 +6,7 @@ import PortalProductDetail from "./ProductDetail";
 import ProductLoader from "@loaders/ProductLoader";
 import "@styles/ProductList.scss";
 
+// FIXME: resolve the rerendering problem :c
 const ProductList = () => {
   const { products, loading } = useProducts();
   const [detailOpen, setDetailOpen] = useState(false);

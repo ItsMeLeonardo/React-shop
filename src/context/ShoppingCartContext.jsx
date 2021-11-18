@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 
 const ShoppingCartContext = React.createContext({});
 
@@ -78,6 +78,10 @@ function ShoppingCartProvider({ children }) {
     }
   };
 
+  const pay = useCallback(() => {
+    setShopCart([]);
+  }, [setShopCart]);
+
   /**
    *
    * @returns {Number} the total price of the cart
@@ -112,6 +116,7 @@ function ShoppingCartProvider({ children }) {
     totalPrice,
     totalItems,
     removeOneFromCart,
+    pay,
   };
 
   return (
