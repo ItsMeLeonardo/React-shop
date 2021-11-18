@@ -19,13 +19,15 @@ export default function useGetCategories() {
   const [categories, setCategories] = useState([]);
 
   useEffect(() => {
-    fetch(API_URL)
-      .then((res) => res.json())
-      .then((json) => {
-        const withGenericCategory = addGenericCategory(json);
-        const categoryObject = transformToObject(withGenericCategory);
-        setCategories(categoryObject);
-      });
+    if (categories.length === 0) {
+      fetch(API_URL)
+        .then((res) => res.json())
+        .then((json) => {
+          const withGenericCategory = addGenericCategory(json);
+          const categoryObject = transformToObject(withGenericCategory);
+          setCategories(categoryObject);
+        });
+    }
   }, []);
 
   return { categories };

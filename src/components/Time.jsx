@@ -1,18 +1,24 @@
+// @ts-check
 import React from "react";
 
-function Time({ date }) {
-  const formattedDate = (date) => {
-    const dateObj = date ? new Date(date) : new Date();
-    const formatted = dateObj.toDateString();
-    const iso = dateObj.toISOString();
-    return {
-      formatted,
-      iso,
-    };
+/**
+ *
+ * @param {Date} date to format
+ * @returns {{formatted: string, iso: string} }
+ */
+const formattedDate = (date) => {
+  const dateObj = date ? new Date(date) : new Date();
+  const formatted = dateObj.toDateString();
+  const iso = dateObj.toISOString();
+  return {
+    formatted,
+    iso,
   };
+};
 
+function Time({ date }) {
   return (
-    <time className="Order-date-time" datatime={formattedDate(date).iso}>
+    <time className="Order-date-time" dateTime={formattedDate(date).iso}>
       {formattedDate(date).formatted}
     </time>
   );

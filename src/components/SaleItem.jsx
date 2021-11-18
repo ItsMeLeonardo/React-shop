@@ -4,15 +4,15 @@ import Time from "@components/Time";
 import arrow from "@icons/flechita.svg";
 import "@styles/SaleItem.scss";
 
-export default function SaleItem() {
+export default function SaleItem({ date, articles, total }) {
   return (
     <div className="Sale-Item">
       <p className="Sale-Info">
-        <Time />
-        <span>1 articles</span>
+        <Time date={date} />
+        <span>{articles} articles</span>
       </p>
       <div className="Sale-details">
-        <p className="Sale-price">$ 125.00</p>
+        <p className="Sale-price">$ {total}</p>
         <img className="Sale-icon" src={arrow} alt="arrow" />
       </div>
     </div>
