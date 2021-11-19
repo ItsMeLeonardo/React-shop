@@ -34,18 +34,16 @@ const formatDataOfOrders = (orders, totalProducts) => {
 
 export default function useOrders({ idUser }) {
   const [orders, setOrders] = useState(null);
-  const { products, loading } = useProducts();
+  const { products } = useProducts();
 
   if (!idUser) {
     throw new Error("Id user is required");
   }
 
   useEffect(() => {
-    if (loading) {
-      getOrders(idUser).then((dataOrders) => {
-        setOrders(formatDataOfOrders(dataOrders, products));
-      });
-    }
+    getOrders(idUser).then((dataOrders) => {
+      setOrders(formatDataOfOrders(dataOrders, products));
+    });
   }, [products]);
 
   return { orders };

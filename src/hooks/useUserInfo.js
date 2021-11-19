@@ -4,12 +4,19 @@ import getUsers from "@services/getUsers";
 
 const useUserInfo = () => {
   const { user, setUser } = useContext(UserContext);
-  const [totalUsers, setTotalUsers] = useState([]);
+  const [totalUsers, setTotalUsers] = useState(() => {
+    const usersSaved = sessionStorage.getItem("totalUsers");
+    return usersSaved ? JSON.parse(usersSaved) : [];
+  });
 
   useEffect(() => {
     // FIXME: solve the multiple call to API
     if (totalUsers.length === 0) {
-      getUsers().then(setTotalUsers);
+      console.log("call user");
+      getUsers().then((users) => {
+        setTotalUsers(users);
+        sessionStorage.setItem("totalUsers", JSON.stringify(users));
+      });
     }
   }, [setTotalUsers]);
 
