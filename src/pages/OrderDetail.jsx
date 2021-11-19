@@ -17,7 +17,7 @@ export default function OrderDetail() {
     <div className="Checkout">
       <div className="Checkout-container">
         <div className="Checkout-title-container" role="button">
-          <Link to="/">
+          <Link to="/orders">
             <button className="Checkout-back">
               <img src={arrowIcon} alt="arrow" className="Checkout-arrow" />
             </button>

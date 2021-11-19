@@ -21,35 +21,30 @@ const getTotalQuantity = (products) => {
  *
  * @param {Array} productsOrder from the orders
  * @param {Array} totalProducts total products from API
- * @returns {Number} the total price of the order
+ * @returns {Object} with added the complete info of the products and quantity, and total price of order
  */
-const getTotalPrice = (productsOrder, totalProducts) => {
+const completeProductDataFromOrder = (productsOrder, totalProducts) => {
   // complete information about the products in the order
   const productsFiltered = productsOrder?.map((product) => {
-    return totalProducts?.find(
+    const filtered = totalProducts?.find(
       (totalProduct) => totalProduct?.id === product?.productId
     );
+    return { ...filtered, quantity: product?.quantity };
   });
 
   // calculate the total price of the order
   const totalPrice = productsFiltered.reduce((accumulator, product, index) => {
     return accumulator + product?.price * productsOrder[index]?.quantity;
   }, 0);
+
+  const quantity = getTotalQuantity(productsOrder);
+
   return {
     totalPrice,
     productsData: productsFiltered,
+    quantity,
   };
 };
-
-/* TODO: optimize this function
-const getProductData = (productsOrder, totalProducts) => {
-  // complete information about the products in the order
-  const productsFiltered = productsOrder?.map((product) => {
-    return totalProducts?.find(
-      (totalProduct) => totalProduct?.id === product?.productId
-    );
-  });
-} */
 
 /**
  *
@@ -59,11 +54,12 @@ const getProductData = (productsOrder, totalProducts) => {
  */
 const formatDataOfOrders = (orders, totalProducts) => {
   return orders.map((order) => {
-    const totalPriceAndData = getTotalPrice(order?.products, totalProducts);
-    const quantity = getTotalQuantity(order?.products);
+    const totalPriceAndData = completeProductDataFromOrder(
+      order?.products,
+      totalProducts
+    );
     return {
       ...order,
-      quantity,
       ...totalPriceAndData,
     };
   });
