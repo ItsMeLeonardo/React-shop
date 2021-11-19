@@ -7,7 +7,7 @@ import "@styles/Orders.scss";
 
 const Orders = () => {
   const { user } = useUserInfo();
-  const { orders } = useOrders({ idUser: user?.id });
+  const { orders } = useOrders({ userId: user?.id });
 
   return (
     <div className="Orders">
@@ -17,9 +17,11 @@ const Orders = () => {
           {orders?.map(({ id, date, quantity, totalPrice }) => (
             <SaleItem
               key={id}
+              id={id}
               date={date}
               articles={quantity}
               total={totalPrice}
+              idUser={user?.id}
             />
           ))}
         </div>

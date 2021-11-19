@@ -1,6 +1,9 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import useProducts from "@hooks/useProducts";
 import getOrders from "@services/getOrders";
+import { OrdersContext } from "@context/OrdersContext";
+
+import "@styles/Checkout.scss";
 
 /**
  *
@@ -29,10 +32,24 @@ const getTotalPrice = (productsOrder, totalProducts) => {
   });
 
   // calculate the total price of the order
-  return productsFiltered.reduce((accumulator, product, index) => {
+  const totalPrice = productsFiltered.reduce((accumulator, product, index) => {
     return accumulator + product?.price * productsOrder[index]?.quantity;
   }, 0);
+  return {
+    totalPrice,
+    productsData: productsFiltered,
+  };
 };
+
+/* TODO: optimize this function
+const getProductData = (productsOrder, totalProducts) => {
+  // complete information about the products in the order
+  const productsFiltered = productsOrder?.map((product) => {
+    return totalProducts?.find(
+      (totalProduct) => totalProduct?.id === product?.productId
+    );
+  });
+} */
 
 /**
  *
@@ -42,27 +59,27 @@ const getTotalPrice = (productsOrder, totalProducts) => {
  */
 const formatDataOfOrders = (orders, totalProducts) => {
   return orders.map((order) => {
-    const totalPrice = getTotalPrice(order?.products, totalProducts);
+    const totalPriceAndData = getTotalPrice(order?.products, totalProducts);
     const quantity = getTotalQuantity(order?.products);
     return {
       ...order,
       quantity,
-      totalPrice,
+      ...totalPriceAndData,
     };
   });
 };
 
-export default function useOrders({ idUser }) {
-  const [orders, setOrders] = useState(null);
+export default function useOrders({ userId }) {
+  const { orders, setOrders } = useContext(OrdersContext);
   const { products } = useProducts();
 
-  if (!idUser) {
+  if (!userId) {
     throw new Error("Id user is required");
   }
 
   useEffect(() => {
     // FIXME: add throttle here
-    getOrders(idUser).then((dataOrders) => {
+    getOrders(userId).then((dataOrders) => {
       setOrders(formatDataOfOrders(dataOrders, products));
     });
   }, [products]);

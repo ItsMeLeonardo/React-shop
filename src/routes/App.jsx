@@ -11,10 +11,12 @@ import MyAccount from "@pages/MyAccount";
 import CreateAccount from "@pages/CreateAccount";
 import Checkout from "@pages/Checkout";
 import Orders from "@pages/Orders";
+import OrderDetail from "@pages/OrderDetail";
 import NotFound from "@pages/NotFound";
 import { ShoppingCartProvider } from "@context/ShoppingCartContext";
 import { ProductContextProvider } from "@context/ProductContext";
 import { UserContextProvider } from "@context/UserContext";
+import { OrdersContextProvider } from "@context/OrdersContext";
 
 import "@styles/global.css";
 
@@ -38,7 +40,14 @@ const App = () => {
                 <Route exact path="/account" component={MyAccount} />
                 <Route exact path="/signup" component={CreateAccount} />
                 <Route exact path="/checkout" component={Checkout} />
-                <Route exact path="/orders" component={Orders} />
+                <OrdersContextProvider>
+                  <Route exact path="/orders" component={Orders} />
+                  <Route
+                    exact
+                    path="/orders/:userId/:orderId"
+                    component={OrderDetail}
+                  />
+                </OrdersContextProvider>
                 <Route path="*" component={NotFound} />
               </Switch>
             </Layout>

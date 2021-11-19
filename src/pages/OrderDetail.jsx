@@ -1,16 +1,18 @@
 import React from "react";
-import useShoppingCart from "@hooks/useShoppingCart";
-import OrderItem from "@components/OrderItem";
+import { Link, useParams } from "react-router-dom";
 import Time from "@components/Time";
-import { Link } from "react-router-dom";
+import OrderItem from "@components/OrderItem";
+import useOrders from "@hooks/useOrders";
 
 import arrowIcon from "@icons/flechita.svg";
-import "@styles/Checkout.scss";
 
-// TODO: add modal to confirm [Thank you for your sale :D]
-const Checkout = () => {
-  const { shopCart, totalPrice, totalItems, pay } = useShoppingCart();
+export default function OrderDetail() {
+  const { orderId, userId } = useParams();
 
+  const { orders } = useOrders({ userId });
+  const order = orders.find((order) => order?.id == orderId);
+
+  // FIXME: persistent data before reload or refresh the page
   return (
     <div className="Checkout">
       <div className="Checkout-container">
@@ -20,32 +22,25 @@ const Checkout = () => {
               <img src={arrowIcon} alt="arrow" className="Checkout-arrow" />
             </button>
           </Link>
-          <h1 className="Checkout-title">My order</h1>
+          <h1 className="Checkout-title">N° Order {order?.id}</h1>
         </div>
         <div className="Checkout-content">
           <div className="order">
             <p>
               <Time />
-              <span>{totalItems} articles</span>
+              <span>{order?.quantity} articles</span>
             </p>
-            <p>${totalPrice}</p>
+            <p>${order?.totalPrice}</p>
           </div>
         </div>
-        {shopCart?.map((product) => (
+        {order?.productsData?.map((product) => (
           <OrderItem
             key={`orderItem-${product?.id}`}
             dynamicItem={false}
             product={product}
           />
         ))}
-        <Link to="/orders">
-          <button onClick={pay} className="primary-button">
-            Pay now
-          </button>
-        </Link>
       </div>
     </div>
   );
-};
-
-export default Checkout;
+}

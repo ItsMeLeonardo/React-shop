@@ -66,7 +66,7 @@ const OrderItem = ({ product, dynamicItem = true } = {}) => {
       </div>
 
       <p>{hiddenTitle(title)}</p>
-      <p>${price * quantity}</p>
+      <p>{quantity ? price * quantity : price}</p>
 
       {dynamicItem && (
         <img
