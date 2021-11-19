@@ -1,8 +1,9 @@
 import React from "react";
 import ReactDOM from "react-dom";
+import { useDetailProduct } from "@hooks/useDetailProduct";
+
 import ProductInfo from "@components/ProductInfo";
 import iconClose from "@icons/icon_close.png";
-import { useDetailProduct } from "@hooks/useDetailProduct";
 import "@styles/ProductDetail.scss";
 
 const ProductDetail = ({ id, onClose }) => {

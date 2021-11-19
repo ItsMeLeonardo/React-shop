@@ -17,7 +17,7 @@ const MyAccount = () => {
     <div className="MyAccount">
       <div className="MyAccount-container">
         <h1 className="title">My account</h1>
-        <form onSubmit={handleClick} action="/" className="form">
+        <form onSubmit={handleClick} className="MyAccount-form">
           <div>
             <label forhtml="name" className="label">
               <span>Name</span>

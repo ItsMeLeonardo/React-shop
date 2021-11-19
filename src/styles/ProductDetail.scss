@@ -9,9 +9,10 @@
   border-radius: 0 0 0 1rem;
 }
 .ProductDetail-close {
+  --size: 2rem;
   background: var(--white);
-  width: 14px;
-  height: 14px;
+  width: var(--size);
+  height: var(--size);
   position: absolute;
   top: 24px;
   left: 24px;
@@ -19,6 +20,9 @@
   padding: 12px;
   border-radius: 50%;
   transition: transform 0.3s ease;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .ProductDetail-close:hover {
   cursor: pointer;

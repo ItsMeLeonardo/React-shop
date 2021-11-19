@@ -44,7 +44,7 @@ const CreateAccount = () => {
       <div className="CreateAccount-container">
         <h1 className="title">Sing Up</h1>
 
-        <form onSubmit={handleSubmit(onSubmit)} className="form">
+        <form onSubmit={handleSubmit(onSubmit)} className="CreateAccount-form">
           <div>
             <label htmlFor="name" className="label">
               Name
@@ -58,7 +58,7 @@ const CreateAccount = () => {
               type="text"
               id="name"
               placeholder="Your name here"
-              className={`input input-name ${errors.name ? "error" : ""}`}
+              className={`CreateAccount-input ${errors.name ? "error" : ""}`}
               {...register("name", VALIDATION.name)}
             />
 
@@ -71,7 +71,7 @@ const CreateAccount = () => {
             <input
               type="email"
               id="email"
-              className={`input input-email ${errors.email ? "error" : ""}`}
+              className={`CreateAccount-input ${errors.email ? "error" : ""}`}
               placeholder="platzi@example.com"
               {...register("email", VALIDATION.email)}
             />
@@ -86,7 +86,7 @@ const CreateAccount = () => {
               type="password"
               id="password"
               placeholder="*********"
-              className={`input input-password ${
+              className={`CreateAccount-input ${
                 errors.password ? "error" : ""
               }`}
               {...register("password", VALIDATION.password)}

@@ -32,6 +32,7 @@ export default function useUser() {
 
   const logout = useCallback(() => {
     setJwt(null);
+    sessionStorage.removeItem("jwt");
   }, [setJwt]);
 
   return {

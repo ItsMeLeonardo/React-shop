@@ -22,27 +22,32 @@
   margin-bottom: 36px;
   text-align: start;
 }
-.form {
+.CreateAccount-form {
   display: flex;
   flex-direction: column;
 }
-.form div {
+.CreateAccount-form div {
   display: flex;
   flex-direction: column;
+  gap: 0.5rem;
 }
 .label {
   font-size: var(--sm);
   font-weight: bold;
   margin-bottom: 4px;
 }
-.input {
+.CreateAccount-input {
   background-color: var(--text-input-field);
   border: none;
   border-radius: 8px;
-  height: 30px;
   font-size: var(--md);
-  padding: 6px;
-  margin-bottom: 12px;
+  padding: 0.75rem 0.5rem;
+}
+.CreateAccount-input:hover {
+  opacity: 0.8;
+}
+.CreateAccount-input:focus {
+  box-shadow: 0 0 0 2px var(--hospital-green);
 }
 .input-name,
 .input-email,

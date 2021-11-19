@@ -36,7 +36,7 @@ const Login = () => {
       <div className="Login-container">
         <h1 className="title">Sign in</h1>
         <img src={logoYard} alt="logo" className="logo" />
-        <form className="form" ref={formRef} onSubmit={handleSubmit}>
+        <form className="Login-form" ref={formRef} onSubmit={handleSubmit}>
           {/* <label htmlFor="email" className="label">
             Email address
           </label>
@@ -55,7 +55,7 @@ const Login = () => {
             id="username"
             name="username"
             placeholder="platzi@example.cm"
-            className={`input input-email ${error ? "error" : ""}`}
+            className={`Login-input ${error ? "error" : ""}`}
           />
 
           <label htmlFor="password" className="label">
@@ -66,7 +66,7 @@ const Login = () => {
             id="password"
             name="password"
             placeholder="*********"
-            className={`input input-password ${error ? "error" : ""}`}
+            className={`Login-input ${error ? "error" : ""}`}
           />
           {error && <span className="error-message">{error.msg}</span>}
           <input
@@ -76,7 +76,7 @@ const Login = () => {
               loading ? "loading" : ""
             } primary-button login-button`}
           />
-          <a href="/">Forgot my password</a>
+          <Link to="/send-email">Forgot my password</Link>
         </form>
         <Link to="/signup">
           <button className="secondary-button signup-button">Sign up</button>
