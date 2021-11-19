@@ -9,8 +9,11 @@ import arrowIcon from "@icons/flechita.svg";
 export default function OrderDetail() {
   const { orderId, userId } = useParams();
 
-  const { orders } = useOrders({ userId });
+  const { orders, loading } = useOrders({ userId });
   const order = orders.find((order) => order?.id == orderId);
+
+  // console.log(order.id);
+  if (loading) return <div>Cargando...</div>;
 
   // FIXME: persistent data before reload or refresh the page
   return (

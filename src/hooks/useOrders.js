@@ -68,17 +68,22 @@ const formatDataOfOrders = (orders, totalProducts) => {
 export default function useOrders({ userId }) {
   const { orders, setOrders } = useContext(OrdersContext);
   const { products } = useProducts();
+  const [loading, setLoading] = useState(false);
 
   if (!userId) {
     throw new Error("Id user is required");
   }
 
   useEffect(() => {
-    // FIXME: add throttle here
-    getOrders(userId).then((dataOrders) => {
-      setOrders(formatDataOfOrders(dataOrders, products));
-    });
-  }, [products]);
+    if (products.length !== 0) {
+      setLoading(true);
+      // FIXME: add throttle here
+      getOrders(userId).then((dataOrders) => {
+        setOrders(formatDataOfOrders(dataOrders, products));
+        setLoading(false);
+      });
+    }
+  }, [products, setOrders]);
 
-  return { orders };
+  return { orders, loading };
 }
