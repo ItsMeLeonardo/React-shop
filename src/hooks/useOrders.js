@@ -75,7 +75,7 @@ export default function useOrders({ userId }) {
   }
 
   useEffect(() => {
-    if (products.length !== 0) {
+    if (products.length !== 0 && orders.length === 0) {
       setLoading(true);
       // FIXME: add throttle here
       getOrders(userId).then((dataOrders) => {

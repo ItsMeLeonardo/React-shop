@@ -12,8 +12,8 @@ export default function OrderDetail() {
   const { orders, loading } = useOrders({ userId });
   const order = orders.find((order) => order?.id == orderId);
 
-  // console.log(order.id);
-  if (loading) return <div>Cargando...</div>;
+  // TODO: add loading
+  if (loading) return <div>Loading...</div>;
 
   // FIXME: persistent data before reload or refresh the page
   return (
