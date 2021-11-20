@@ -15,6 +15,13 @@
   grid-template-rows: auto 1fr auto;
   width: 300px;
 }
+.Orders-loader {
+  width: 100%;
+  height: calc(100vh - 61px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 .Orders-content {
   display: flex;
   flex-direction: column;

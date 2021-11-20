@@ -47,19 +47,18 @@ const Login = () => {
             placeholder="platzi@example.cm"
             className={`input input-email ${error ? "error" : ""}`}
           /> */}
-          <label htmlFor="username" className="label">
+          <label htmlFor="username" className="label username">
             Username
           </label>
           <input
             type="text"
             id="username"
             name="username"
-            value="johnd"
-            placeholder="platzi@example.cm"
+            placeholder="johnd"
             className={`Login-input ${error ? "error" : ""}`}
           />
 
-          <label htmlFor="password" className="label">
+          <label htmlFor="password" className="label password">
             Password
           </label>
           <input
@@ -67,7 +66,7 @@ const Login = () => {
             id="password"
             name="password"
             placeholder="*********"
-            value="m38rmF$"
+            placeholder="m38rmF$"
             className={`Login-input ${error ? "error" : ""}`}
           />
           {error && <span className="error-message">{error.msg}</span>}

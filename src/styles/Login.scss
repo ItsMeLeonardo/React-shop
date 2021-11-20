@@ -20,7 +20,7 @@
 .Login-form {
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
+  gap: 0.25rem;
 }
 .Login-form a {
   color: var(--hospital-green);
@@ -32,8 +32,23 @@
 .label {
   font-size: var(--sm);
   font-weight: bold;
-  margin-bottom: 4px;
+  margin-top: 0.5rem;
+  position: relative;
 }
+.Login-form .label::after {
+  color: var(--hospital-red);
+  position: absolute;
+  right: 0;
+  top: 0;
+  opacity: 0.5;
+}
+.label.username::after {
+  content: "johnd";
+}
+.label.password::after {
+  content: "m38rmF$";
+}
+
 .Login-input {
   background-color: var(--text-input-field);
   border: none;

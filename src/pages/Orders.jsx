@@ -2,12 +2,21 @@ import React from "react";
 import useOrders from "@hooks/useOrders";
 import useUserInfo from "@hooks/useUserInfo";
 import SaleItem from "@components/SaleItem";
+import SaleItemLoader from "@loaders/SaleItemLoader";
 
 import "@styles/Orders.scss";
 
 const Orders = () => {
   const { user } = useUserInfo();
-  const { orders } = useOrders({ userId: user?.id });
+  const { orders, loading } = useOrders({ userId: user?.id });
+
+  if (loading) {
+    return (
+      <div className="Orders-loader">
+        <SaleItemLoader />
+      </div>
+    );
+  }
 
   return (
     <div className="Orders">
