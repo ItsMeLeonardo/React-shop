@@ -54,6 +54,7 @@ const Login = () => {
             type="text"
             id="username"
             name="username"
+            value="johnd"
             placeholder="platzi@example.cm"
             className={`Login-input ${error ? "error" : ""}`}
           />
@@ -66,6 +67,7 @@ const Login = () => {
             id="password"
             name="password"
             placeholder="*********"
+            value="m38rmF$"
             className={`Login-input ${error ? "error" : ""}`}
           />
           {error && <span className="error-message">{error.msg}</span>}
