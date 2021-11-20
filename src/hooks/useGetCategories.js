@@ -17,18 +17,21 @@ const transformToObject = (categories) => {
 
 export default function useGetCategories() {
   const [categories, setCategories] = useState([]);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     if (categories.length === 0) {
+      setLoading(true);
       fetch(API_URL)
         .then((res) => res.json())
         .then((json) => {
           const withGenericCategory = addGenericCategory(json);
           const categoryObject = transformToObject(withGenericCategory);
           setCategories(categoryObject);
+          setLoading(false);
         });
     }
   }, []);
 
-  return { categories };
+  return { categories, loading };
 }

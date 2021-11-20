@@ -7,18 +7,19 @@ import MyOrder from "@containers/MyOrder";
 import useGetCategories from "@hooks/useGetCategories";
 import useUser from "@hooks/useUser";
 import useShoppingCart from "@hooks/useShoppingCart";
+import useUserInfo from "@hooks/useUserInfo";
+import CategoryLoader from "@loaders/CategoryLoader";
 
 import menu from "@icons/icon_menu.svg";
 import logo from "@logos/logo_yard_sale.svg";
 import iconShoppingCart from "@icons/icon_shopping_cart.svg";
 import "@styles/Header.scss";
-import useUserInfo from "../hooks/useUserInfo";
 
 const Header = () => {
   const { shopCart, totalItems } = useShoppingCart();
   const [toggleOrders, setToggleOrders] = useState(false);
   const [toggleMenu, setToggleMenu] = useState(false);
-  const { categories } = useGetCategories();
+  const { categories, loading } = useGetCategories();
   const { isLogged } = useUser();
   const { user } = useUserInfo();
   const refCategoryContainer = useRef(null);
@@ -42,6 +43,7 @@ const Header = () => {
           <img src={logo} alt="logo" className="logo-nav" />
         </Link>
         <ul ref={refCategoryContainer}>
+          {loading && <CategoryLoader />}
           {categories?.map((category) => (
             <CategoryItem
               key={category.name}
