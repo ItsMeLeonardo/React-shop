@@ -12,7 +12,6 @@ const useUserInfo = () => {
   useEffect(() => {
     // FIXME: solve the multiple call to API
     if (totalUsers.length === 0) {
-      console.log("call user");
       getUsers().then((users) => {
         setTotalUsers(users);
         sessionStorage.setItem("totalUsers", JSON.stringify(users));

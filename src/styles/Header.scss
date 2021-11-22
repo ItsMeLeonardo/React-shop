@@ -42,6 +42,13 @@ nav {
 .navbar-email:hover {
   color: var(--hospital-green);
 }
+.navbar-email-icon {
+  --size: 2rem;
+  width: var(--size);
+  height: var(--size);
+  color: var(--hospital-green);
+  display: none;
+}
 .navbar-shopping-cart {
   position: relative;
 }
@@ -62,11 +69,29 @@ nav {
 @media (max-width: 640px) {
   .menu {
     display: block;
+    position: relative;
+    z-index: 10;
   }
   .navbar-left ul {
     display: none;
   }
-  .navbar-email {
+  .navbar-left .category-content {
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+    left: 0;
+    top: 0;
+    z-index: 1;
+  }
+  .navbar-email-text {
     display: none;
+  }
+  .navbar-email-icon {
+    display: block;
   }
 }
