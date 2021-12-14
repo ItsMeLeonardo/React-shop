@@ -38,7 +38,7 @@ const NewPassword = () => {
       <div className="NewPassword-container">
         <img src={logo} alt="logo" className="logo" />
         <h1 className="title">Create a new password</h1>
-        <p className="subtitle">Enter a new password for yue account</p>
+        <p className="subtitle">Enter a new password for your account</p>
 
         <form onSubmit={handleSubmit(onSubmit)} className="NewPassword-form">
           <label forhtml="password" className="label">
