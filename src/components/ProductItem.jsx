@@ -9,8 +9,6 @@ function ProductItem({ product, openDetail, addToCart, removeFromCart }) {
   const [productInCart, setProductInCart] = useState(false);
   const { title, image, price, id } = product;
 
-  // const { addToCart, removeFromCart } = useShoppingCart();
-
   const handleToggleCart = (product) => {
     if (productInCart) {
       setProductInCart(!removeFromCart(id));
