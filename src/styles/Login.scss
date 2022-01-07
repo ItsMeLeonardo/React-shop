@@ -42,13 +42,6 @@
   top: 0;
   opacity: 0.5;
 }
-.label.username::after {
-  content: "johnd";
-}
-.label.password::after {
-  content: "m38rmF$";
-}
-
 .Login-input {
   background-color: var(--text-input-field);
   border: none;

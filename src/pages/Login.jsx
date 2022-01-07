@@ -1,16 +1,18 @@
 import React, { useEffect, useRef } from "react";
 import { useHistory, Link } from "react-router-dom";
 import useUser from "@hooks/useUser";
+import useUserInfo from "../hooks/useUserInfo";
 
 import logoYard from "@logos/logo_yard_sale.svg";
 import "@styles/Login.scss";
-import useUserInfo from "../hooks/useUserInfo";
 
 const Login = () => {
   const { isLogged, login, error, loading } = useUser();
   const { findUser } = useUserInfo();
   const formRef = useRef(null);
   const history = useHistory();
+
+  console.log({ error });
 
   useEffect(() => {
     if (isLogged && !loading) {
@@ -21,11 +23,14 @@ const Login = () => {
   const handleSubmit = (event) => {
     event.preventDefault();
 
-    const fromData = new FormData(formRef.current);
+    const username = event.target.username.value;
+    const password = event.target.password.value;
+
+    if (username.length === 0 || password.length === 0) return;
     const data = {
       // email: fromData.get("email"),
-      username: fromData.get("username"),
-      password: fromData.get("password"),
+      username,
+      password,
     };
     login(data);
     findUser(data);
@@ -55,6 +60,7 @@ const Login = () => {
             id="username"
             name="username"
             placeholder="johnd"
+            defaultValue="johnd"
             className={`Login-input ${error ? "error" : ""}`}
           />
 
@@ -66,10 +72,10 @@ const Login = () => {
             id="password"
             name="password"
             placeholder="*********"
-            placeholder="m38rmF$"
+            defaultValue="m38rmF$"
             className={`Login-input ${error ? "error" : ""}`}
           />
-          {error && <span className="error-message">{error.msg}</span>}
+          {error && <span className="error-message">{error.message}</span>}
           <input
             type="submit"
             value="Log in"

@@ -12,19 +12,20 @@ export default function useUser() {
       setLoading(true);
       loginService(username, password)
         .then((res) => {
-          if (res.status === "Error") {
-            setError(res);
-            setTimeout(() => {
-              setError(null);
-            }, 5000);
-          } else {
-            sessionStorage.setItem("jwt", res.token);
-            setLoading(false);
-            setJwt(res.token);
-          }
+          sessionStorage.setItem("jwt", res.token);
+          setLoading(false);
+          setJwt(res.token);
         })
-        .catch(() => {
+        .catch((err) => {
+          console.log({ err });
           sessionStorage.removeItem("jwt");
+          setError(err);
+          setTimeout(() => {
+            setError(null);
+          }, 5000);
+        })
+        .finally(() => {
+          setLoading(false);
         });
     },
     [setJwt]

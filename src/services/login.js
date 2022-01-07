@@ -13,8 +13,11 @@ export default async function login(username, password) {
       }),
     });
     const data = await response.json();
+    if (data.msg === "username or password is incorrect") {
+      throw new Error("username or password is incorrect");
+    }
     return data;
   } catch (error) {
-    throw new Error("Login error");
+    throw new Error(error);
   }
 }
